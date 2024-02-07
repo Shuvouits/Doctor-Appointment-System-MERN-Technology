@@ -27,13 +27,13 @@ export default function Hero() {
 
             <div>
               <p className='scoreCount'>30+</p>
-              <p className='scoreTag'> Years of Experience</p>
+              <p className='scoreTag'>Clinic Location</p>
 
             </div>
 
             <div>
               <p className='scoreCount'>30+</p>
-              <p className='scoreTag'> Years of Experience</p>
+              <p className='scoreTag'>Patient Satisfaction</p>
 
             </div>
 

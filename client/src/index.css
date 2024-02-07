@@ -21,7 +21,17 @@ header {
     background-position: center;
     background-repeat: no-repeat;
     border-bottom: 1px solid gainsboro;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, box-shadow 0.3s;
+
   }
+
+  header.scrolled {
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
   
   .menu {
     display: flex;
@@ -80,6 +90,7 @@ header {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    z-index: 100;
 }
 
 .leftSection{
@@ -663,6 +674,57 @@ header {
     justify-content: flex-start;
     gap: 10px;
   }
+
+  .fdoctor{
+    background: #fff5df;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fdoctor .fdoctor-search{
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  .fdoctor .fdoctor-search h1{
+    margin: 0;
+  }
+  .fdoctor .searchbar{
+    background: gainsboro;
+    border-radius: 10px;
+  }
+
+  .fdoctor .searchbar input{
+    border: none;
+    width: 30vw;
+    font-size: 16px;
+    padding: 20px;
+    background: none;
+    outline: none;
+  }
+
+  .fdoctor .searchBtn{
+    background: blue;
+    color: white;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
   
   
 
@@ -677,18 +739,22 @@ header {
 
     body p{
         font-size: 14px !important;
+       
     }
 
     body h2{
         font-size: 22px !important;
         font-weight: 500 !important;
         text-align: center;
+        margin: 0;
+        
     }
 
     body h3{
         font-size: 22px !important;
         font-weight: 500 !important;
         text-align: center;
+       
         
     }
 
@@ -962,6 +1028,22 @@ header {
         padding-bottom: 10px;
     
         
+      }
+
+      .fdoctor .fdoctor-search{
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .fdoctor .searchbar input{
+        width: 70vw;
+        padding: 10px;
+        font-size: 12px;
+        
+      }
+
+      .fdoctor .searchBtn{
+        padding: 12px;
       }
 
    
