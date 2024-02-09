@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Doctor1 from "../images/doctor-img01.png"
 import Doctor2 from "../images/doctor-img02.png"
 import Doctor3 from "../images/doctor-img03.png"
@@ -19,7 +20,12 @@ export default function DoctorList() {
                     <div className='cardImg'>
                         <img src={Doctor1} />
                     </div>
-                    <div className='dname'>Dr. Altap Mahamud</div>
+                    <Link className="customLink" to={'/dr-altap-mahamud/100200'}>
+
+                    <div className='dname'>Dr. Altap Mahamud</div> 
+
+                    </Link>
+                   
                     <div className='mid-info'>
                         <span className='designation'>Surgeon</span>
                         <span className='score'>
