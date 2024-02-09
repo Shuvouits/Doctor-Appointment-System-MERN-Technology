@@ -12,6 +12,11 @@ function DoctorInfo() {
     setActiveTab(tab);
   };
 
+  const [userRating, setUserRating] = useState(0);
+  const handleStarClick = (rating) => {
+    setUserRating(rating);
+  };
+
   return (
     <div className='doctor-info'>
       <div className='left-side'>
@@ -165,10 +170,32 @@ function DoctorInfo() {
             <button className='feedback-btn' onClick={() => setFeedback(!feedback)}>Give Feedback</button>
             <br></br>
 
+
+
+
+
+
+
             {feedback && (
 
               <div className='user-feedback'>
                 <h3>How would rate your overall experience??</h3>
+
+                <div className='user-rating-input'>
+                  <span>Give your Rating </span>
+                  <div className="star-rating">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <FaStar
+                        key={star}
+                        onClick={() => handleStarClick(star)}
+                        color={star <= userRating ? "#ffcc00" : "gainsboro"}
+                        style={{ cursor: "pointer", fontSize: "24px" }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <br></br>
+
                 <textarea placeholder='Write your message' style={{ fontSize: "15px", border: "1px solid gainsboro", padding: "15px", height: "20vh", width: "100%" }}></textarea>
 
               </div>

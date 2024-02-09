@@ -633,7 +633,8 @@ header.scrolled {
 .footer {
   padding-left: 150px;
   padding-right: 150px;
-  margin-top: 100px;
+  margin-top: 80px;
+  
   border-top: 1px solid gainsboro;
   display: flex;
   align-items: flex-start;
@@ -963,6 +964,66 @@ header.scrolled {
 
 }
 
+.login{
+  padding-left: 150px;
+  padding-right: 150px;
+  display: flex;
+  margin-top: 80px;
+}
+
+.login .card{
+  border: 1px solid gainsboro;
+  width: 40vw;
+  margin: auto;
+  border-radius: 10px;
+  
+}
+
+.login .card-header{
+  font-size: 25px;
+  text-align: center;
+}
+
+.login .card-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.login .card-body .row{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login .form-control{
+  border: 1px solid gainsboro;
+  width: 30vw;
+  height: 45px;
+  gap: 10px;
+  padding-left: 12px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.login .form-control:focus{
+  border: 1px solid gray;
+
+}
+
+.login .submit-btn{
+  background: #007bff;
+  border: none;
+  padding: 15px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+}
+
 
 
 
@@ -1261,7 +1322,6 @@ header.scrolled {
   .footer {
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: 50px;
     border-top: 1px solid gainsboro;
     display: flex;
     flex-direction: column;
@@ -1270,6 +1330,7 @@ header.scrolled {
     gap: 0px;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-top: 0px;
 
 
   }
@@ -1371,6 +1432,7 @@ header.scrolled {
 
   .user-feedback textarea::placeholder {
     padding: 20px;
+    font-family: josefin-sans;
   }
 
 
@@ -1401,6 +1463,34 @@ header.scrolled {
 
   .doctor-info .right-side .ticket-card .feedback-btn {
     padding: 10px;
+  }
+
+  .login{
+    padding-left: 10px;
+    padding-right: 10px;
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .login .card{
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .login .form-control{
+    width: 80vw !important;
+    height: 35px;
+    font-size: 12px;
+    
+  }
+
+  .login .row .submit-btn{
+    padding: 10px;
+    font-size: 13px;
   }
 
 

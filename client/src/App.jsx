@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import Services from "./pages/Services"
 import FindDoctor from "./pages/FindDoctor"
 import DoctorInfo from "./pages/DoctorInfo"
+import Login from "./pages/Login"
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route  path="/services" element={<Services />} />
         <Route path="/find-doctor" element={<FindDoctor />} />
         <Route path="/:doctor-name/:id" element={<DoctorInfo />} />
+        <Route path="/login" element={<Login />} />
 
       </Routes>
       <Footer />
