@@ -633,7 +633,6 @@ header.scrolled {
 .footer {
   padding-left: 150px;
   padding-right: 150px;
-  margin-top: 80px;
   
   border-top: 1px solid gainsboro;
   display: flex;
@@ -1024,7 +1023,146 @@ header.scrolled {
   font-size: 15px;
 }
 
+.register{
+  padding-left: 150px;
+  padding-right: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  height: 100vh;
+}
 
+.register .banner img{
+  width: 500px;
+}
+
+.register .card{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register .card-body .form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.register .card-body .form input:focus{
+  border-bottom: 1px solid blue;
+}
+
+.register .card-body .form .col{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.register .card-body .form .col img{
+  border-radius: 50px;
+  width: 80px;
+  border: 5px solid blue;
+
+}
+
+.register .form input{
+  border: none;
+  outline: none;
+}
+
+.register .form .form-control{
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid gainsboro;
+  border-radius: none !important;
+  
+}
+
+.register .form .form-select{
+  height: 40px;
+  width: 100%;
+  border: 1px solid gainsboro;
+  outline: none;
+  padding-left: 3px;
+  margin-top: 10px;
+}
+
+
+.register .form .sign-up{
+  border: none;
+  border-radius: 50px;
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.contact{
+  padding-left: 150px;
+  padding-right: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.contact .card{
+ 
+}
+
+.contact .card .card-header{
+  margin-bottom: 15px;
+  
+}
+
+.contact .card .card-body .form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.contact .card .card-body .form-group{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+}
+
+.contact .card .card-body .form-control{
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  height: 45px;
+  padding-left: 15px;
+  outline: none;
+}
+
+.contact .card .card-body .form input:focus{
+  
+  border: 1px solid blue;
+  
+}
+
+.contact .card .card-body .form textarea:focus{
+  
+  border: 1px solid blue;
+  
+}
+
+.contact .contact-us{
+  background: red;
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  padding: 15px;
+  border-radius: 15px;
+  cursor: pointer;
+}
 
 
 
@@ -1493,6 +1631,60 @@ header.scrolled {
     font-size: 13px;
   }
 
+  .register{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+  }
+
+  .register .banner{
+    display: none;
+  }
+
+  .register .banner img{
+    width: 10px;
+    
+  }
+
+  .register .card-body{
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .register .card-body .form .form-control{
+
+    
+  }
+
+  .register .card-body .form .form-select{
+    
+
+  }
+
+  .register .card-body .form .col{
+    
+
+  }
+
+  .register .card-footer{
+    margin-bottom: 20px;
+  }
+
+  .contact{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .contact .contact-us{
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  
 
 
 

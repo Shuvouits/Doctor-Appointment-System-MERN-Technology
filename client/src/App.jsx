@@ -6,6 +6,8 @@ import Services from "./pages/Services"
 import FindDoctor from "./pages/FindDoctor"
 import DoctorInfo from "./pages/DoctorInfo"
 import Login from "./pages/Login"
+import Register from "./pages/Register"
+import Contact from "./pages/Contact"
 
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
         <Route path="/find-doctor" element={<FindDoctor />} />
         <Route path="/:doctor-name/:id" element={<DoctorInfo />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/contact" element={<Contact />} />
 
       </Routes>
       <Footer />
