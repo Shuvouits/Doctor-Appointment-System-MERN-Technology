@@ -968,6 +968,7 @@ header.scrolled {
   padding-right: 150px;
   display: flex;
   margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 .login .card{
