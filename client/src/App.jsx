@@ -11,6 +11,7 @@ import Contact from "./pages/Contact"
 import Profile from "./pages/Profile"
 import Private from "./pages/Private"
 import { useSelector } from "react-redux"
+import DoctorProfile from "./pages/DoctorProfile"
 
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
 
         <Route element={<Private />}>
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={user.userType === 'Doctor' ? <DoctorProfile /> :  <Profile />} />
         </Route>
 
       </Routes>

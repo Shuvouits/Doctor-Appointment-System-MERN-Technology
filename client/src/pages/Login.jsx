@@ -64,9 +64,9 @@ function Login() {
 
                 dispatch({ type: "LOGIN", payload: data });
                 Cookies.set("user", JSON.stringify(data));
+                navigate('/profile')
 
-
-                navigate('/profile');
+                
             }
 
 
