@@ -8,6 +8,10 @@ export function userReducer(
   switch (action.type) {
     case "LOGIN":
       return action.payload;
+      
+    case "UPDATE":
+      return action.payload;
+
     case "LOGOUT":
       return null;
     case "VERIFY":

@@ -24,6 +24,12 @@ const userSchema = new mongoose.Schema({
         
     
     },
+
+    blood: {
+        type: String,
+    
+    },
+
     userType: {
         type: String,
         enum: ['Patient', 'Doctor'],

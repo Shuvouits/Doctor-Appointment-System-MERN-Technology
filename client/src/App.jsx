@@ -1,6 +1,6 @@
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
 import Home from "./pages/Home"
 import Services from "./pages/Services"
 import FindDoctor from "./pages/FindDoctor"
@@ -10,9 +10,13 @@ import Register from "./pages/Register"
 import Contact from "./pages/Contact"
 import Profile from "./pages/Profile"
 import Private from "./pages/Private"
+import { useSelector } from "react-redux"
 
 
 function App() {
+
+  const {user} = useSelector((state) => ({ ...state }))
+  const navigate = useNavigate();
 
 
   return (
@@ -21,13 +25,19 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Home />} />
-        <Route  path="/services" element={<Services />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/find-doctor" element={<FindDoctor />} />
         <Route path="/:doctor-name/:id" element={<DoctorInfo />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/contact" element={<Contact />} />
+
+
+        <Route path={'/login'} element= { !user ? <Login /> : <Profile />} />
         
+        <Route path="/register" element={ !user ? <Register /> : <Profile /> } />
+                
+
+        
+
+        <Route path="/contact" element={<Contact />} />
 
         <Route element={<Private />}>
           <Route path="/profile" element={<Profile />} />

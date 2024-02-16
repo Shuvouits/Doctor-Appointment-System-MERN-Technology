@@ -103,17 +103,21 @@ export default function Header() {
         </div>
 
         <div>
-          <Link to={'/login'}>
-            {
-              user ? (
-                <button className='loginBtn' onClick={handleLogout}>Logout</button>
-                
-              ) : (
-                <button className='loginBtn'>Login</button>
-              )
-            }
+         
 
-          </Link>
+          {
+            user ? (
+              <Link className='customLink' to="/profile">
+              <div style={{display: 'flex', alignItems: "center", gap: "10px"}}>
+                    <img style={{width: "50px", height: "50px", borderRadius: "25px"}} src={user.avatar} />
+                    <span>{user.fullName}</span>
+
+                </div>
+                </Link>
+            ): (
+              <Link to="/login"><button className='loginBtn'>Login</button></Link>
+            )
+          }
 
 
 

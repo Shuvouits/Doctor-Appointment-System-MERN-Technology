@@ -74,6 +74,7 @@ exports.Login = async(req,res)=> {
             userType: validUser.userType,
             gender: validUser.gender,
             avatar: validUser.avatar,
+            blood: validUser.blood,
             token: token
         })
 
@@ -101,4 +102,41 @@ exports.signOut = async (req, res) => {
 
     }
 
+}
+
+exports.profileUpdate = async(req,res)=>{
+    try{
+
+        let tmp = req.header("Authorization");
+        const token = tmp ? tmp.slice(7, tmp.length) : "";
+        const userId = req.user.id;
+        const { fullName, email, password, avatar, group, blood, userType } = req.body;
+
+        let cryptedPassword;
+        if (password) {
+            cryptedPassword = await bcrypt.hash(password, 12)
+        }
+
+        const updateUser = await User.findByIdAndUpdate(userId, { fullName, email, avatar, password: cryptedPassword, group, blood, userType }, { new: true })
+
+
+        if (!updateUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        return res.status(200).json({
+            id: updateUser._id,
+            email: updateUser.email,
+            fullName: updateUser.fullName,
+            avatar: updateUser.avatar,
+            token: token,
+            gender: updateUser.gender,
+            blood: updateUser.blood,
+            message: 'User information updated'
+        })
+
+
+    }catch(error){
+        return res.status(500).json(error)
+    }
 }

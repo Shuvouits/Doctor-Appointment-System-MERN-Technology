@@ -1214,6 +1214,20 @@ header.scrolled {
   color: white !important; /* Change the background color */
 }
 
+.profile-container{
+  position: relative;
+}
+
+.profile-container .spinners{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1 !important;
+ 
+  
+}
+
 
 .profile{
   padding-left: 150px;
@@ -1358,6 +1372,17 @@ header.scrolled {
   padding-left: 3px;
   margin-top: 10px;
 
+}
+
+.profile .submit-btn{
+  border: none;
+  background: #007bff;
+  height: 40px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 /*---------*/

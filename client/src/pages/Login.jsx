@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 import { MdOutlineCelebration } from "react-icons/md";
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { BeatLoader } from 'react-spinners';
 import Swal from 'sweetalert2';
 
 function Login() {
 
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({})
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    
 
     const handleChange = (e) => {
         setFormData({
