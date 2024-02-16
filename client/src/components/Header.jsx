@@ -1,13 +1,19 @@
 // Header.js
 
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from "../images/logo.png";
 import { FaBars } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
+import { useDispatch, useSelector } from 'react-redux';
+import Cookies from "js-cookie"
+import Swal from 'sweetalert2';
 
 
 export default function Header() {
+  const { user } = useSelector((state) => ({ ...state }))
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
 
   const toggleSidebar = () => {
@@ -34,16 +40,60 @@ export default function Header() {
     };
   }, []);
 
+  const handleLogout = async() => {
+    try{
+
+      const res = await fetch('http://localhost:4000/signout', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`,
+        }
+      });
+
+      const data = await res.json();
+
+      if (res.status === 200) {
+        dispatch({ type: "LOGOUT", payload: null });
+        Cookies.set("user", null);
+
+        Swal.fire({
+          toast: true,
+          position: 'top-right',
+          animation: true,
+          text: `${user.fullName}, You have logged out`,
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          customClass: {
+              container: 'custom-toast-container',
+              popup: 'custom-toast-popup',
+              title: 'custom-toast-title',
+              icon: 'custom-toast-icon',
+          },
+      });
+
+      
+        navigate('/login')
+      }
+
+    }catch(error){
+
+    }
+    
+  }
+
 
   return (
     <>
       <header>
         <div className='logo'>
           <Link to={"/"}>
-          <img src={logo} alt="Logo" />
+            <img src={logo} alt="Logo" />
 
           </Link>
-          
+
         </div>
         <div className={`menu ${showSidebar ? 'show' : 'hide'}`}>
           <Link className='customLink' to={'/'}>Home</Link>
@@ -54,9 +104,17 @@ export default function Header() {
 
         <div>
           <Link to={'/login'}>
-          <button className='loginBtn'>Login</button>
+            {
+              user ? (
+                <button className='loginBtn' onClick={handleLogout}>Logout</button>
+                
+              ) : (
+                <button className='loginBtn'>Login</button>
+              )
+            }
+
           </Link>
-          
+
 
 
 

@@ -14,9 +14,19 @@ exports.Register = async(req,res)=>{
 
         const existEmail = await User.findOne({email})
 
+        
+
         if(existEmail){
             return res.status(400).json({
                 "message" : "This email are already used"
+            })
+        }
+
+        const passLength = password.length > 6;
+
+        if(!passLength){
+            return res.status(400).json({
+                "message" : "Password at lest 6 character or number"
             })
         }
 
@@ -34,9 +44,7 @@ exports.Register = async(req,res)=>{
 
 
     }catch(error){
-        res.status(500).json({
-            "message" : "Internal server error"
-        })
+        res.status(500).json(error)
     }
     
 
@@ -47,13 +55,13 @@ exports.Login = async(req,res)=> {
         const {email, password} = req.body;
         const validUser = await User.findOne({email: email});
         if(!validUser){
-            return res.status(401).json({
+            return res.status(400).json({
                 message: "Email is not found"
             })
         }
         const validPassword = bcrypt.compareSync(password, validUser.password);
         if(!validPassword){
-            return res.status(401).json({
+            return res.status(400).json({
                 message: "Incorrect Password"
             })
         } 
@@ -76,4 +84,21 @@ exports.Login = async(req,res)=> {
         })
 
     }
+}
+
+exports.signOut = async (req, res) => {
+    try {
+
+        let tmp = req.header("Authorization");
+        tmp = null
+        const token = tmp;
+        return res.status(200).json({
+            "message" : "User has been logged out"
+        })
+
+    } catch (error) {
+        res.status(500).json(error)
+
+    }
+
 }

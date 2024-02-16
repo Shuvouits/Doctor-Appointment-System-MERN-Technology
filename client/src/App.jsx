@@ -8,6 +8,8 @@ import DoctorInfo from "./pages/DoctorInfo"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Contact from "./pages/Contact"
+import Profile from "./pages/Profile"
+import Private from "./pages/Private"
 
 
 function App() {
@@ -25,6 +27,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/contact" element={<Contact />} />
+        
+
+        <Route element={<Private />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
 
       </Routes>
       <Footer />

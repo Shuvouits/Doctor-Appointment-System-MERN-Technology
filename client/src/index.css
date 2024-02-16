@@ -419,6 +419,7 @@ header.scrolled {
   margin-top: 100px;
   padding-left: 150px;
   padding-right: 150px;
+  
 
 }
 
@@ -441,7 +442,7 @@ header.scrolled {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 30px;
 }
 
@@ -690,6 +691,7 @@ header.scrolled {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
 
 .fdoctor .fdoctor-search {
@@ -734,6 +736,11 @@ header.scrolled {
   font-weight: 600;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+
+.fdoctor-list{
+ 
+
 }
 
 
@@ -963,6 +970,20 @@ header.scrolled {
 
 }
 
+.login-container{
+  position: relative;
+}
+
+.login-container .spinners{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1 !important;
+ 
+  
+}
+
 .login{
   padding-left: 150px;
   padding-right: 150px;
@@ -1024,6 +1045,24 @@ header.scrolled {
   font-size: 15px;
 }
 
+.register-container{
+
+  position: relative;
+
+}
+
+.register-container .spinners{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1 !important;
+ 
+  
+}
+
+
+
 .register{
   padding-left: 150px;
   padding-right: 150px;
@@ -1032,7 +1071,10 @@ header.scrolled {
   justify-content: center;
   gap: 60px;
   height: 100vh;
+
 }
+
+
 
 .register .banner img{
   width: 500px;
@@ -1166,7 +1208,159 @@ header.scrolled {
 }
 
 
+.custom-toast-popup {
+  /* Container styles */
+  background-color: purple !important;
+  color: white !important; /* Change the background color */
+}
 
+
+.profile{
+  padding-left: 150px;
+  padding-right: 150px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.profile .left-part .card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid gainsboro;
+  width: 25vw;
+  border-radius: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.profile .left-part .profile-image img{
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+}
+
+.profile .left-part .profile-info{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.profile .left-part .card .card-footer{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 20px;
+}
+.profile .left-part .card .card-footer .logout{
+  width: 20vw;
+  border: none;
+  background: black;
+  color: white;
+  height: 45px;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.profile .left-part .card .card-footer .delete{
+  width: 20vw;
+  border: none;
+  background: red;
+  color: white;
+  height: 45px;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.profile .right-part{
+
+}
+
+.profile .right-part .card{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+}
+.profile .card .card-header{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.profile .card .card-header .booking{
+  height: 45px;
+  width: 17vw;
+  border: none;
+  background: lightcyan;
+  color: black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.profile .card .card-header .profile-setting{
+  height: 45px;
+  width: 17vw;
+  border: none;
+  background: lightcyan;
+  color: black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.profile .right-part .card-body .form{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+}
+
+.profile .right-part .card-body .form .form-group{
+  
+}
+
+.profile .right-part .card-body .form .form-group .form-control{
+  width: 80%;
+  border: none;
+  border-bottom: 1px solid gainsboro;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: 40px;
+  outline: none;
+  
+}
+
+.profile .right-part .card-body .form .form-group input:focus{
+  border-bottom: 2px solid blue;
+}
+
+.profile .right-part .card-body .form .form-select{
+  height: 40px;
+  border: none;
+  width: 30%;
+  border-bottom: 1px solid gainsboro;
+  outline: none;
+  padding-left: 3px;
+  margin-top: 10px;
+
+}
+
+/*---------*/
 
 
 
@@ -1639,7 +1833,10 @@ header.scrolled {
     display: flex;
     flex-direction: column;
     width: 90vw;
+  
   }
+
+  
 
   .register .banner{
     display: none;
@@ -1683,6 +1880,68 @@ header.scrolled {
     padding: 12px;
     font-size: 15px;
     font-weight: 500;
+  }
+
+  .profile{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+   
+  }
+
+  .profile .left-part .profile-image img{
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+  }
+
+  .profile .left-part{
+    width: 40%;
+
+  }
+
+  .profile .right-part{
+    width: 60%;
+  }
+
+  .profile .left-part .card{
+    width: 100%;
+  }
+
+  .profile .left-part .card .card-footer .logout{
+    width: 30vw;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .profile .left-part .card .card-footer .delete{
+    width: 30vw;
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .profile .card .card-header{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .profile .card .card-header .booking{
+    height: 30px;
+    width: 30vw;
+    font-size: 12px;
+  }
+
+  .profile .card .card-header .profile-setting{
+    height: 30px;
+    width: 30vw;
+    font-size: 12px;
   }
 
   
