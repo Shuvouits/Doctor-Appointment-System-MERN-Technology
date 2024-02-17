@@ -200,16 +200,22 @@ header.scrolled {
 .about {
   padding-left: 150px;
   padding-right: 150px;
+  min-height: 600px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 50px;
   margin-top: 100px;
+  background: lightcyan;
 }
 
 .aboutProfile {
   position: relative;
   width: 40%;
+}
+
+.aboutProfile img{
+  border-radius: 50%;
 }
 
 .aboutDesc {
@@ -341,9 +347,11 @@ header.scrolled {
   margin-top: 100px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-left: 150px;
   padding-right: 150px;
+  background-color: lightcyan;
+  min-height: 600px;
 }
 
 .virtualTreatMent .leftPart {
@@ -365,15 +373,25 @@ header.scrolled {
   font-size: 19px;
 }
 
+.virtualTreatMent .rightPart{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+}
+
+.virtualTreatMent .rightPart .feature{
+   border-radius: 50%;
+   
+}
 
 .virtualTreatMent .rightPart .sticker {
-  width: 300px;
-  padding-left: 15px;
-  padding-right: 15px;
+  width: 250px;
+ padding-left: 20px;
+ padding-right: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 10px;
   position: absolute;
@@ -493,18 +511,29 @@ header.scrolled {
 .faq {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-left: 150px;
   padding-right: 150px;
-  margin-top: 100px;
+  gap: 40px;
+  margin-top: 50px;
+  min-height: 600px;
+  background: lightcyan;
 }
 
 .faq .left-part {
-  width: 40%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq .left-part img{
+  height: 500px;
+  
 }
 
 .faq .right-part {
-  width: 40%;
+  width: 50%;
 }
 
 .faq-container {
@@ -525,28 +554,39 @@ header.scrolled {
   transition: border-color 0.3s;
 }
 
+.faq-item .icon{
+  color: white !important;
+}
+
 .faq-item:hover {
-  border-color: black;
+  
 }
 
 .question {
   padding: 15px;
   cursor: pointer;
-  background-color: white;
-  font-weight: bold;
+  background-color: #007bff;
+  font-weight: 400;
   user-select: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: white;
+  font-size: 16px;
+  letter-spacing: 0.6px;
+  
 }
 
 .answer {
-  padding: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
   background-color: white;
 }
 
 .open .question {
-  background-color: gainsboro;
+
 }
 
 
@@ -1516,6 +1556,114 @@ header.scrolled {
   font-size: 20px;
   line-height: 30px;
 }
+
+.profile-doctor{
+
+  width: 70%;
+
+}
+
+.profile-doctor .form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+ 
+}
+
+.profile-doctor .form-group{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 70%;
+}
+
+.profile-doctor .form-control{
+  border: 1px solid gainsboro;
+  width: 100%;
+  height: 45px;
+  padding-left: 15px;
+  outline: none;
+  font-size: 15px;
+  border-radius: 10px;
+}
+
+.profile-doctor .form-group input:focus{
+  border: 1px solid gray;
+}
+
+.profile-doctor .form .col{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 70%;
+  gap: 20px;
+}
+
+.profile-doctor .form input[type='file']{
+  border: none;
+}
+
+.profile-doctor .form .col .form-select{
+  border: 1px solid gainsboro;
+  outline: none;
+  height: 45px;
+  padding-left: 12px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.custom-datepicker-wrapper {
+  border: none; /* Remove default border */
+  width: 95%;
+
+}
+
+.custom-datepicker-input {
+  border: 1px solid gainsboro;
+  outline: none;
+  height: 45px;
+  padding-left: 12px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.qualification-btn{
+  border: none;
+  background: blueviolet;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+  cursor: pointer;
+
+}
+
+.remove-qualification-btn{
+  border: none;
+  background: red;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30px;
+  cursor: pointer;
+
+}
+.profile-doctor .form .submit-btn{
+  background: #007bff;
+  width: 70%;
+  border: none;
+  height: 50px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
 /*---------*/
 
 
@@ -2213,6 +2361,27 @@ header.scrolled {
 
   .doctor-profile .right-part .education .edetails .info{
     font-size: 15px;
+  }
+
+  .profile-doctor{
+
+    width: 100%;
+  
+  }
+
+  .profile-doctor .form-group{
+    width: 90%;
+  }
+
+  .profile-doctor .form .col{
+    width: 90%;
+    gap: 10px;
+  }
+
+  .profile-doctor .form .submit-btn{
+    width: 100%;
+    font-size: 14px;
+    
   }
 
   

@@ -41,7 +41,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
 
         <Route element={<Private />}>
-          <Route path="/profile" element={user.userType === 'Doctor' ? <DoctorProfile /> :  <Profile />} />
+          <Route path="/profile" element={user && user.userType === 'Doctor' ? <DoctorProfile /> :  <Profile />} />
         </Route>
 
       </Routes>

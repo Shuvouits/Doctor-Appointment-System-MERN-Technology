@@ -239,7 +239,7 @@ function Register() {
                                 </div>
 
                                 <div className='form-group'>
-                                    <input type='file' onChange={(e) => setFile(e.target.files[0])} placeholder='Enter your password' className='form-control' />
+                                    <input type='file' onChange={(e) => setFile(e.target.files[0])}  className='form-control' />
                                     
 
                                 </div>

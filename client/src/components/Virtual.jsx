@@ -34,11 +34,17 @@ export default function Virtual() {
               </div>
 
             </div>
-            <div className='round2'><span className='way'>Consultation</span></div>
+
+            <div style={{display: "flex", alignItems: 'center', justifyContent:'space-between', gap:"10px"}}>
             <div className='round3'>
               <img src={Avatar} />
               <p>Jhon Doe</p>
             </div>
+            <div className='round2'><span className='way'>Consultation</span></div>
+           
+
+            </div>
+           
           </div>
         </div>
 
