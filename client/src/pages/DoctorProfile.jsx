@@ -3,11 +3,14 @@ import Doctor from "../images/doctor-img02.png"
 import { FaStar } from "react-icons/fa";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import Cookies from "js-cookie"
+import Swal from 'sweetalert2';
 
 
 function DoctorProfile() {
     const {user} = useSelector((state)=> ({...state}))
+    const dispatch = useDispatch();
     const [overView, setOverView] = useState(true)
     const [profile, setProfile] = useState(false)
     //Date Picker
@@ -33,6 +36,51 @@ function DoctorProfile() {
         setOverView(false)
         setProfile(true)
     }
+
+    //log out functionality
+    const handleLogout = async () => {
+        try {
+    
+          const res = await fetch('http://localhost:4000/signout', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${user.token}`,
+            }
+          });
+    
+          const data = await res.json();
+    
+          if (res.status === 200) {
+            dispatch({ type: "LOGOUT", payload: null });
+            Cookies.set("user", null);
+    
+            Swal.fire({
+              toast: true,
+              position: 'top-right',
+              animation: true,
+              text: `${user.fullName}, You have logged out`,
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              customClass: {
+                container: 'custom-toast-container',
+                popup: 'custom-toast-popup',
+                title: 'custom-toast-title',
+                icon: 'custom-toast-icon',
+              },
+            });
+    
+    
+            navigate('/login')
+          }
+    
+        } catch (error) {
+    
+        }
+    
+      }
 
     //dynamic qualification form start
 
@@ -143,7 +191,7 @@ function DoctorProfile() {
 
                 </div>
                 <div className='account-btn'>
-                    <button className='logout'>LogOut</button>
+                    <button className='logout' onClick={handleLogout}>LogOut</button>
                     <button className='delete'>Delete Account</button>
 
                 </div>
