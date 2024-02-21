@@ -74,7 +74,7 @@ exports.Login = async(req,res)=> {
             userType: validUser.userType,
             gender: validUser.gender,
             avatar: validUser.avatar,
-            blood: validUser.blood,
+            blood: validUser.blood, 
             token: token
         })
 
@@ -135,6 +135,52 @@ exports.profileUpdate = async(req,res)=>{
             message: 'User information updated'
         })
 
+
+    }catch(error){
+        return res.status(500).json(error)
+    }
+}
+
+exports.doctorProfileUpdate = async(req, res)=> {
+    try{
+
+        let tmp = req.header("Authorization");
+        const token = tmp ? tmp.slice(7, tmp.length) : "";
+        const userId = req.user.id;
+
+        const updateData = req.body;
+
+        
+
+        const updateUser = await User.findByIdAndUpdate(userId, updateData, { new: true })
+
+        if(!updateData){
+            return res.status(400).json({
+                message: "Profile is not updated"
+            })
+        }
+
+        return res.status(200).json({
+            email: updateUser.email,
+            fullName: updateUser.fullName,
+            userType: updateUser.userType,
+            gender: updateUser.gender,
+            avatar: updateUser.avatar,
+            blood: updateUser.blood, 
+            token: token
+        })
+
+    }catch(error){
+        return res.status(500).json(error)
+    }
+}
+
+exports.doctorProfileShow = async(req, res) => {
+    try{
+
+        const userId = req.user.id;
+        const user = await User.findById(userId);
+        return res.send(user)
 
     }catch(error){
         return res.status(500).json(error)
