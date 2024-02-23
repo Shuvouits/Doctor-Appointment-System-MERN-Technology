@@ -10,11 +10,13 @@ import Swal from 'sweetalert2';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import { app, storage } from '../firebase.js'
 import { BeatLoader } from 'react-spinners';
+import { format } from 'date-fns';
 
 
 function DoctorProfile() {
     const { user } = useSelector((state) => ({ ...state }))
     const { doctorProfile } = useSelector((state) => ({ ...state }))
+    const [userData, setUserData] = useState({});
     const dispatch = useDispatch();
     const [overView, setOverView] = useState(true)
     const [profile, setProfile] = useState(false)
@@ -26,7 +28,7 @@ function DoctorProfile() {
     const [selectedDate, setSelectedDate] = useState(null);
     const [imageLoading, setImageLoading] = useState(false)
     const [loading, setLoading] = useState(false)
-    
+
 
 
     const CustomInput = ({ value, onClick }) => (
@@ -95,6 +97,7 @@ function DoctorProfile() {
             handleFileUpload(file)
         }
 
+
     }, [file]);
 
     //Finished
@@ -122,8 +125,14 @@ function DoctorProfile() {
         ]);
     };
 
+
+
     const handleRemoveQualification = (id) => {
-        setQualifications(qualifications.filter((qualification) => qualification.id !== id));
+        console.log(id)
+        setQualifications((prevQualifications) =>
+            prevQualifications.filter((qualification) => qualification.id !== id)
+        );
+
     };
 
     const handleQualificationChange = (id, field, value) => {
@@ -138,15 +147,12 @@ function DoctorProfile() {
 
 
 
+
+
+
     //End
 
-    /* const handleDynamicChange = (id, field, value, setState) => {
-         setState((prevData) =>
-             prevData.map((item) => (item.id === id ? { ...item, [field]: value } : item))
-         );
-     }; */
 
-    //dynamic experience form start
 
     const [experience, setExperience] = useState([
         { id: 1, estartDate: null, eendDate: null, edegree: '', euniversity: '' },
@@ -161,6 +167,7 @@ function DoctorProfile() {
 
     const handleRemoveExperience = (id) => {
         setExperience(experience.filter((experience) => experience.id !== id));
+
     };
 
     const handleExperienceChange = (id, field, value) => {
@@ -257,8 +264,48 @@ function DoctorProfile() {
 
     }
 
+
+    const fetchDoctorProfile = async () => {
+
+        try {
+            const res = await fetch('http://localhost:4000/doctor-profile-show', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`,
+                },
+            });
+            const data = await res.json();
+            setUserData(data);
+            console.log('data = ', data);
+
+
+            if (res.status === 200) {
+                // Update formData with the fetched data
+                setFormData((prevData) => ({
+                    ...prevData,
+                    ...data
+                }));
+
+                //dispatch({ type: "DOCTORPROFILEUPDATE", payload: data });
+                //Cookies.set("doctorProfile", JSON.stringify(data));
+
+                setQualifications(data.qualifications || []);
+                setExperience(data.experience || []);
+                setTime(data.time || []);
+
+
+            }
+        } catch (error) {
+
+        }
+
+    };
+
+
     //Data Update form
     const handleSubmit = async (e) => {
+
         e.preventDefault();
         setLoading(true)
         // Handle overall form submission logic
@@ -269,7 +316,6 @@ function DoctorProfile() {
             experience
         }
 
-        console.log(updatedFormData);
 
         try {
 
@@ -328,6 +374,8 @@ function DoctorProfile() {
 
             if (res.status === 200) {
 
+                fetchDoctorProfile();
+
                 dispatch({ type: "UPDATE", payload: data });
                 Cookies.set("user", JSON.stringify(data));
                 setLoading(false)
@@ -348,9 +396,6 @@ function DoctorProfile() {
                         icon: 'custom-toast-icon',
                     },
                 });
-
-
-
 
             }
 
@@ -381,44 +426,18 @@ function DoctorProfile() {
 
     };
 
-    //Shows all doctor data
+    //End
+
     useEffect(() => {
-        const fetchDoctorProfile = async () => {
-
-            const res = await fetch('http://localhost:4000/doctor-profile-show', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${user.token}`,
-                },
-            });
-
-            const data = await res.json();
-
-            if (res.status === 200) {
-                // Update formData with the fetched data
-                setFormData((prevData) => ({
-                    ...prevData,
-                    ...data
-                }));
-
-                setQualifications(data.qualifications || []);
-                setExperience(data.experience || []);
-                setTime(data.time || []);
-
-                dispatch({ type: "DOCTORPROFILEUPDATE", payload: data });
-                Cookies.set("doctorProfile", JSON.stringify(data));
-
-            }
-
-
-
-        };
-
         fetchDoctorProfile();
     }, []);
 
-    //End
+
+    console.log(qualifications);
+
+
+
+
 
     return (
 
@@ -433,7 +452,7 @@ function DoctorProfile() {
                 )
             }
 
-            <div className='doctor-profile'  style={{ opacity: loading ? '0.3' : '1' }}>
+            <div className='doctor-profile' style={{ opacity: loading ? '0.3' : '1' }}>
                 <div className='left-part'>
                     <div className='list'>
                         <ul>
@@ -455,24 +474,19 @@ function DoctorProfile() {
                     <div className='right-part'>
                         <div className='dprofile'>
                             <div className='image'>
-                                <img src={Doctor} />
+                                <img src={user.avatar} style={{ width: '20vw', height: '20vw', borderRadius: '10px' }} />
                             </div>
+
                             <div className='info'>
-                                <span className='designation'>Suregon</span>
-                                <span>Shuvo Bhowmik</span>
+                                <span className='designation'>{userData.speciality}</span>
+                                <span>{userData.fullName}</span>
                                 <span><FaStar /> 4.5 (233)</span>
                                 <span>Doctor Bio</span>
                             </div>
                         </div>
                         <div className='dabout'>
                             <p>
-                                It is a long established fact that a reader will be distracted by the readable content
-                                of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                                more-or-less normal distribution of letters, as opposed to using 'Content here, content here',
-                                making it look like readable English. Many desktop publishing packages and web page editors now
-                                use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web
-                                sites still in their infancy. Various versions have evolved over the years, sometimes by accident,
-                                sometimes on purpose (injected humour and the like).
+                                {userData.about}
                             </p>
                         </div>
 
@@ -480,27 +494,31 @@ function DoctorProfile() {
 
                             <div className='education'>
                                 <h2>Education</h2>
-
                                 <div className='edetails'>
-                                    <div className='info'>
-                                        <span>University of California</span>
-                                        <span>Phd in Suregon <span style={{ color: 'blue', fontWeight: 'bold' }}>(New Applo hospital in newWork)</span></span>
-                                    </div>
 
-                                    <div className='info'>
-                                        <span>University of California</span>
-                                        <span>Phd in Suregon <span style={{ color: 'blue', fontWeight: 'bold' }}>(New Applo hospital in newWork)</span></span>
-                                    </div>
-
-                                    <div className='info'>
-                                        <span>University of California</span>
-                                        <span>Phd in Suregon <span style={{ color: 'blue', fontWeight: 'bold' }}>(New Applo hospital in newWork)</span></span>
-                                    </div>
-
+                                    {userData.qualifications && userData.qualifications.length > 0 ? (
+                                        <div>
+                                            {userData.qualifications.map((item, index) => (
+                                                <div className='info' key={index}>
+                                                    <span>{item.quniversity}</span>
+                                                    <span>
+                                                        {item.qdegree}{' '}
+                                                        <span style={{ color: 'blue', fontWeight: 'bold' }}>
+                                                            ({format(item.startDate, 'yyyy-MM-dd')} - {format(item.endDate, 'yyyy-MM-dd')})
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div>No education history yet</div>
+                                    )}
 
 
 
                                 </div>
+
+
 
 
 
@@ -510,21 +528,24 @@ function DoctorProfile() {
                                 <h2>Experience</h2>
 
                                 <div className='edetails'>
-                                    <div className='info'>
-                                        <span>University of California</span>
-                                        <span>Phd in Suregon <span style={{ color: 'blue', fontWeight: 'bold' }}>(New Applo hospital in newWork)</span></span>
-                                    </div>
 
-                                    <div className='info'>
-                                        <span>University of California</span>
-                                        <span>Phd in Suregon <span style={{ color: 'blue', fontWeight: 'bold' }}>(New Applo hospital in newWork)</span></span>
-                                    </div>
-
-                                    <div className='info'>
-                                        <span>University of California</span>
-                                        <span>Phd in Suregon <span style={{ color: 'blue', fontWeight: 'bold' }}>(New Applo hospital in newWork)</span></span>
-                                    </div>
-
+                                    {userData.experience && userData.qualifications.length > 0 ? (
+                                        <div>
+                                            {userData.experience.map((item, index) => (
+                                                <div className='info' key={index}>
+                                                    <span>{item.euniversity}</span>
+                                                    <span>
+                                                        {item.edegree}{' '}
+                                                        <span style={{ color: 'blue', fontWeight: 'bold' }}>
+                                                            ({format(item.estartDate, 'yyyy-MM-dd')} - {format(item.eendDate, 'yyyy-MM-dd')})
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div>No experience history yet</div>
+                                    )}
 
 
 
@@ -533,6 +554,38 @@ function DoctorProfile() {
 
 
                             </div>
+
+                            <div className='education'>
+                                <h2>Appointment Date</h2>
+
+                                <div className='edetails'>
+
+                                    {userData.time && userData.time.length > 0 ? (
+                                        <div>
+                                            {userData.time.map((item, index) => (
+                                                <div className='info' key={index}>
+                                                    <span>{item.day}</span>
+                                                    <span>
+                                                        {item.startTime}{' '} -   {item.endTime}{' '}
+                                                      
+                                                        
+                                                    </span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div>No experience history yet</div>
+                                    )}
+
+
+
+                                </div>
+
+
+
+                            </div>
+
+
 
                         </div>
 
@@ -614,6 +667,7 @@ function DoctorProfile() {
 
                                             <div className='form-group'>
                                                 <label>Starting Date</label>
+
                                                 <DatePicker
                                                     customInput={<CustomInput />}
                                                     wrapperClassName="custom-datepicker-wrapper"
@@ -897,9 +951,9 @@ function DoctorProfile() {
                                 )
                             }
 
-                            <button type='submit' className='submit-btn' style={{ background: loading || imageLoading ? 'red' : '', cursor: loading || imageLoading ? 'not-allowed' : 'pointer' }}>
-                                {loading ? 'Profile Updated....' : ' Submit'}
-                                
+                            <button type='submit' disabled={imagePreview ? 'disabled' : ''} className='submit-btn' style={{ background: loading || imageLoading ? 'red' : '', cursor: loading || imageLoading ? 'not-allowed' : 'pointer' }}>
+                                {loading ? 'Profile Updated....' : 'Update'}
+
                             </button>
 
 

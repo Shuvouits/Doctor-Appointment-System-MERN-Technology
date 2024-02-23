@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 export function profileReducer(
   state = Cookies.get("doctorProfile") ? JSON.parse(Cookies.get("doctorProfile")) : null,
 
+
   action
 ) {
   switch (action.type) {
