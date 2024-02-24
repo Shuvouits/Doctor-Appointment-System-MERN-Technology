@@ -4,8 +4,43 @@ import Doctor2 from "../images/doctor-img02.png"
 import Doctor3 from "../images/doctor-img03.png"
 import { FaStar } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { useEffect, useState } from "react";
 
 export default function DoctorList() {
+
+    const [doctor, setDoctor] = useState({})
+
+    const allDoctor = async () => {
+
+        try {
+            const res = await fetch('http://localhost:4000/all-doctor', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const data = await res.json();
+
+
+
+            if (res.status === 200) {
+                setDoctor(data);
+
+            }
+        } catch (error) {
+
+        }
+
+    };
+
+    useEffect(() => {
+        allDoctor();
+    }, []);
+
+
+
+
+
     return (
 
         <div className='doctorList'>
@@ -16,69 +51,59 @@ export default function DoctorList() {
 
             <div className='cardGrid'>
 
-                <div className='card'>
-                    <div className='cardImg'>
-                        <img src={Doctor1} />
-                    </div>
-                    <Link className="customLink" to={'/dr-altap-mahamud/100200'}>
+                {doctor && doctor.length > 0 ? (
+                    <>
+                        {doctor.map((item, index) => (
 
-                    <div className='dname'>Dr. Altap Mahamud</div> 
+                            <Link className="customLink" to={`/${item.fullName}/${item._id}`}>
 
-                    </Link>
-                   
-                    <div className='mid-info'>
-                        <span className='designation'>Surgeon</span>
-                        <span className='score'>
-                            <span className='starIcon'><FaStar /></span>
-                            4.8 (272)
-                        </span>
+                                <div className='card'>
+                                    <div className='cardImg'>
+                                        {item.avatar ? (
 
-                    </div>
-                    <div className='last-info'>
-                        <div className='count'>+1500 patients</div>
-                        <div className='icon'><IoIosArrowRoundForward /></div>
+                                            <img src={item.avatar} width={'400px'} style={{borderRadius: '15px'}} />
 
-                    </div>
-                </div>
+                                        ) : (
+
+                                            <img src={Doctor1} width={'400px'} />
+
+                                        )}
 
 
-                <div className='card'>
-                    <div className='cardImg'>
-                        <img src={Doctor2} />
-                    </div>
-                    <div className='dname'>Dr. Altap Mahamud</div>
-                    <div className='mid-info'>
-                        <span className='designation'>Surgeon</span>
-                        <span className='score'>
-                            <span className='starIcon'><FaStar /></span>
-                            4.8 (272)
-                        </span>
-                    </div>
-                    <div className='last-info'>
-                        <div className='count'>+1500 patients</div>
-                        <div className='icon'><IoIosArrowRoundForward /></div>
 
-                    </div>
-                </div>
+                                    </div>
 
-                <div className='card'>
-                    <div className='cardImg'>
-                        <img src={Doctor3} />
-                    </div>
-                    <div className='dname'>Dr. Altap Mahamud</div>
-                    <div className='mid-info'>
-                        <span className='designation'>Surgeon</span>
-                        <span className='score'>
-                            <span className='starIcon'><FaStar /></span>
-                            4.8 (272)
-                        </span>
-                    </div>
-                    <div className='last-info'>
-                        <div className='count'>+1500 patients</div>
-                        <div className='icon'><IoIosArrowRoundForward /></div>
 
-                    </div>
-                </div>
+                                    <div className='dname'>{item.fullName}</div>
+                                    <span>{item.email}</span>
+
+
+
+                                    <div className='mid-info'>
+                                        <span className='designation'>{item.speciality}</span>
+                                        <span className='score'>
+                                            <span className='starIcon'><FaStar /></span>
+                                            4.8 (272)
+                                        </span>
+
+                                    </div>
+                                    <div className='last-info'>
+                                        <div className='count'>+1500 patients</div>
+                                        <div className='icon'><IoIosArrowRoundForward /></div>
+
+                                    </div>
+                                </div>
+
+                            </Link>
+
+                        ))}
+                    </>
+
+                ) : (
+                    <div>No Doctor Found</div>
+                )}
+
+
 
 
 

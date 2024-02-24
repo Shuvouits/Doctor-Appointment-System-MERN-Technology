@@ -21,6 +21,7 @@ export default function FindDoctor() {
             <div className='fdoctor-list'>
               <DoctorList />
             </div>
+            <div style={{marginBottom: "100px"}}></div>
 
         </div>
 

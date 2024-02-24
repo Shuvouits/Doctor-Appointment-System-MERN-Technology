@@ -148,7 +148,7 @@ header.scrolled {
   justify-content: center;
 }
 
-.hero .rightSection .rpimg img{
+.hero .rightSection .rpimg img {
   width: 300px;
 }
 
@@ -161,9 +161,10 @@ header.scrolled {
 
 }
 
-.hero .rightSection .lpimg img{
+.hero .rightSection .lpimg img {
   width: 200px;
 }
+
 .services {
   display: flex;
   flex-direction: column;
@@ -224,7 +225,7 @@ header.scrolled {
   width: 40%;
 }
 
-.aboutProfile img{
+.aboutProfile img {
   border-radius: 50%;
 }
 
@@ -383,22 +384,22 @@ header.scrolled {
   font-size: 19px;
 }
 
-.virtualTreatMent .rightPart{
+.virtualTreatMent .rightPart {
   display: flex;
   align-items: center;
   justify-content: center;
 
 }
 
-.virtualTreatMent .rightPart .feature{
-   border-radius: 50%;
-   
+.virtualTreatMent .rightPart .feature {
+  border-radius: 50%;
+
 }
 
 .virtualTreatMent .rightPart .sticker {
   width: 250px;
- padding-left: 20px;
- padding-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -444,10 +445,14 @@ header.scrolled {
 }
 
 .doctorList {
-  margin-top: 100px;
+  margin-top: 20px;
   padding-left: 150px;
   padding-right: 150px;
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 
 }
 
@@ -467,11 +472,19 @@ header.scrolled {
 }
 
 .doctorList .cardGrid {
-  display: flex;
+  /*display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 30px;
+  width: 90%;*/
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+ 
+ 
 }
 
 
@@ -537,9 +550,9 @@ header.scrolled {
   justify-content: center;
 }
 
-.faq .left-part img{
+.faq .left-part img {
   height: 500px;
-  
+
 }
 
 .faq .right-part {
@@ -564,13 +577,11 @@ header.scrolled {
   transition: border-color 0.3s;
 }
 
-.faq-item .icon{
+.faq-item .icon {
   color: white !important;
 }
 
-.faq-item:hover {
-  
-}
+.faq-item:hover {}
 
 .question {
   padding: 15px;
@@ -584,7 +595,7 @@ header.scrolled {
   color: white;
   font-size: 16px;
   letter-spacing: 0.6px;
-  
+
 }
 
 .answer {
@@ -595,9 +606,7 @@ header.scrolled {
   background-color: white;
 }
 
-.open .question {
-
-}
+.open .question {}
 
 
 /* TestimonialCarousel.css (Basic styles) */
@@ -684,7 +693,7 @@ header.scrolled {
 .footer {
   padding-left: 150px;
   padding-right: 150px;
-  
+
   border-top: 1px solid gainsboro;
   display: flex;
   align-items: flex-start;
@@ -741,7 +750,7 @@ header.scrolled {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 .fdoctor .fdoctor-search {
@@ -788,10 +797,7 @@ header.scrolled {
   border-bottom-right-radius: 10px;
 }
 
-.fdoctor-list{
- 
-
-}
+.fdoctor-list {}
 
 
 .doctor-info {
@@ -1020,21 +1026,21 @@ header.scrolled {
 
 }
 
-.login-container{
+.login-container {
   position: relative;
 }
 
-.login-container .spinners{
+.login-container .spinners {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 1 !important;
- 
-  
+
+
 }
 
-.login{
+.login {
   padding-left: 150px;
   padding-right: 150px;
   display: flex;
@@ -1042,20 +1048,20 @@ header.scrolled {
   margin-bottom: 80px;
 }
 
-.login .card{
+.login .card {
   border: 1px solid gainsboro;
   width: 40vw;
   margin: auto;
   border-radius: 10px;
-  
+
 }
 
-.login .card-header{
+.login .card-header {
   font-size: 25px;
   text-align: center;
 }
 
-.login .card-body{
+.login .card-body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1063,13 +1069,13 @@ header.scrolled {
 
 }
 
-.login .card-body .row{
+.login .card-body .row {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.login .form-control{
+.login .form-control {
   border: 1px solid gainsboro;
   width: 30vw;
   height: 45px;
@@ -1079,12 +1085,12 @@ header.scrolled {
   border-radius: 5px;
 }
 
-.login .form-control:focus{
+.login .form-control:focus {
   border: 1px solid gray;
 
 }
 
-.login .submit-btn{
+.login .submit-btn {
   background: #007bff;
   border: none;
   padding: 15px;
@@ -1095,25 +1101,25 @@ header.scrolled {
   font-size: 15px;
 }
 
-.register-container{
+.register-container {
 
   position: relative;
 
 }
 
-.register-container .spinners{
+.register-container .spinners {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 1 !important;
- 
-  
+
+
 }
 
 
 
-.register{
+.register {
   padding-left: 150px;
   padding-right: 150px;
   display: flex;
@@ -1126,54 +1132,54 @@ header.scrolled {
 
 
 
-.register .banner img{
+.register .banner img {
   width: 500px;
 }
 
-.register .card{
+.register .card {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.register .card-body .form{
+.register .card-body .form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.register .card-body .form input:focus{
+.register .card-body .form input:focus {
   border-bottom: 1px solid blue;
 }
 
-.register .card-body .form .col{
+.register .card-body .form .col {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
 }
 
-.register .card-body .form .col img{
+.register .card-body .form .col img {
   border-radius: 50px;
   width: 80px;
   border: 5px solid blue;
 
 }
 
-.register .form input{
+.register .form input {
   border: none;
   outline: none;
 }
 
-.register .form .form-control{
+.register .form .form-control {
   width: 100%;
   height: 40px;
   border-bottom: 1px solid gainsboro;
   border-radius: none !important;
-  
+
 }
 
-.register .form .form-select{
+.register .form .form-select {
   height: 40px;
   width: 100%;
   border: 1px solid gainsboro;
@@ -1183,7 +1189,7 @@ header.scrolled {
 }
 
 
-.register .form .sign-up{
+.register .form .sign-up {
   border: none;
   border-radius: 50px;
   background: #007bff;
@@ -1194,7 +1200,7 @@ header.scrolled {
   cursor: pointer;
 }
 
-.contact{
+.contact {
   padding-left: 150px;
   padding-right: 150px;
   display: flex;
@@ -1205,28 +1211,27 @@ header.scrolled {
   margin-bottom: 30px;
 }
 
-.contact .card{
- 
-}
+.contact .card {}
 
-.contact .card .card-header{
+.contact .card .card-header {
   margin-bottom: 15px;
-  
+
 }
 
-.contact .card .card-body .form{
+.contact .card .card-body .form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-.contact .card .card-body .form-group{
+
+.contact .card .card-body .form-group {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  
+
 }
 
-.contact .card .card-body .form-control{
+.contact .card .card-body .form-control {
   border: 1px solid gainsboro;
   border-radius: 10px;
   height: 45px;
@@ -1234,19 +1239,19 @@ header.scrolled {
   outline: none;
 }
 
-.contact .card .card-body .form input:focus{
-  
+.contact .card .card-body .form input:focus {
+
   border: 1px solid blue;
-  
+
 }
 
-.contact .card .card-body .form textarea:focus{
-  
+.contact .card .card-body .form textarea:focus {
+
   border: 1px solid blue;
-  
+
 }
 
-.contact .contact-us{
+.contact .contact-us {
   background: red;
   border: none;
   color: white;
@@ -1261,14 +1266,15 @@ header.scrolled {
 .custom-toast-popup {
   /* Container styles */
   background-color: purple !important;
-  color: white !important; /* Change the background color */
+  color: white !important;
+  /* Change the background color */
 }
 
-.profile-container{
+.profile-container {
   position: relative;
 }
 
-.profile-container .spinners{
+.profile-container .spinners {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -1277,7 +1283,7 @@ header.scrolled {
 }
 
 
-.profile{
+.profile {
   padding-left: 150px;
   padding-right: 150px;
   display: flex;
@@ -1288,7 +1294,7 @@ header.scrolled {
   padding-bottom: 50px;
 }
 
-.profile .left-part .card{
+.profile .left-part .card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1301,25 +1307,26 @@ header.scrolled {
   padding-bottom: 30px;
 }
 
-.profile .left-part .profile-image img{
+.profile .left-part .profile-image img {
   width: 120px;
   height: 120px;
   border-radius: 60px;
 }
 
-.profile .left-part .profile-info{
+.profile .left-part .profile-info {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.profile .left-part .card .card-footer{
+.profile .left-part .card .card-footer {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
   gap: 20px;
 }
-.profile .left-part .card .card-footer .logout{
+
+.profile .left-part .card .card-footer .logout {
   width: 20vw;
   border: none;
   background: black;
@@ -1330,7 +1337,7 @@ header.scrolled {
   cursor: pointer;
 }
 
-.profile .left-part .card .card-footer .delete{
+.profile .left-part .card .card-footer .delete {
   width: 20vw;
   border: none;
   background: red;
@@ -1341,24 +1348,23 @@ header.scrolled {
   cursor: pointer;
 }
 
-.profile .right-part{
+.profile .right-part {}
 
-}
-
-.profile .right-part .card{
+.profile .right-part .card {
   display: flex;
   flex-direction: column;
   gap: 30px;
 
 }
-.profile .card .card-header{
+
+.profile .card .card-header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
 }
 
-.profile .card .card-header .booking{
+.profile .card .card-header .booking {
   height: 45px;
   width: 17vw;
   border: none;
@@ -1371,7 +1377,7 @@ header.scrolled {
   font-size: 16px;
 }
 
-.profile .card .card-header .profile-setting{
+.profile .card .card-header .profile-setting {
   height: 45px;
   width: 17vw;
   border: none;
@@ -1384,18 +1390,16 @@ header.scrolled {
   font-size: 16px;
 }
 
-.profile .right-part .card-body .form{
+.profile .right-part .card-body .form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  
+
 }
 
-.profile .right-part .card-body .form .form-group{
-  
-}
+.profile .right-part .card-body .form .form-group {}
 
-.profile .right-part .card-body .form .form-group .form-control{
+.profile .right-part .card-body .form .form-group .form-control {
   width: 80%;
   border: none;
   border-bottom: 1px solid gainsboro;
@@ -1404,14 +1408,14 @@ header.scrolled {
   gap: 30px;
   height: 40px;
   outline: none;
-  
+
 }
 
-.profile .right-part .card-body .form .form-group input:focus{
+.profile .right-part .card-body .form .form-group input:focus {
   border-bottom: 2px solid blue;
 }
 
-.profile .right-part .card-body .form .form-select{
+.profile .right-part .card-body .form .form-select {
   height: 40px;
   border: none;
   width: 30%;
@@ -1422,7 +1426,7 @@ header.scrolled {
 
 }
 
-.profile .submit-btn{
+.profile .submit-btn {
   border: none;
   background: #007bff;
   height: 40px;
@@ -1433,11 +1437,11 @@ header.scrolled {
   cursor: pointer;
 }
 
-.doctor-profile-container{
+.doctor-profile-container {
   position: relative;
 }
 
-.doctor-profile-container .spinners{
+.doctor-profile-container .spinners {
   position: absolute;
   left: 50%;
   top: 80%;
@@ -1445,7 +1449,7 @@ header.scrolled {
   opacity: 1 !important;
 }
 
-.doctor-profile{
+.doctor-profile {
   padding-left: 150px;
   padding-right: 150px;
   padding-top: 50px;
@@ -1456,7 +1460,7 @@ header.scrolled {
   gap: 30px;
 }
 
-.doctor-profile .left-part{
+.doctor-profile .left-part {
   border: 1px solid gainsboro;
   display: flex;
   flex-direction: column;
@@ -1464,18 +1468,18 @@ header.scrolled {
   width: 30%;
   padding: 30px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  
+
 }
 
 @media only screen and (min-width: 1001px) {
-  .doctor-profile .left-part{
+  .doctor-profile .left-part {
     position: sticky;
     top: 20%;
   }
- 
+
 }
 
-.doctor-profile .left-part .list ul{
+.doctor-profile .left-part .list ul {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -1485,8 +1489,9 @@ header.scrolled {
   padding: 0;
   margin: 0;
 }
-.doctor-profile .left-part .list li{
- 
+
+.doctor-profile .left-part .list li {
+
   width: 100%;
   height: 50px;
   display: flex;
@@ -1497,20 +1502,21 @@ header.scrolled {
   font-weight: 600;
   border: 1px solid gainsboro;
 }
-.doctor-profile .left-part .list li.active{
+
+.doctor-profile .left-part .list li.active {
   color: white;
   background: blue;
 
 }
 
-.doctor-profile .left-part .account-btn{
+.doctor-profile .left-part .account-btn {
   display: flex;
   flex-direction: column;
   gap: 20px;
 
 }
 
-.doctor-profile .left-part .account-btn .logout{
+.doctor-profile .left-part .account-btn .logout {
   border: none;
   height: 50px;
   border-radius: 10px;
@@ -1522,7 +1528,7 @@ header.scrolled {
 
 }
 
-.doctor-profile .left-part .account-btn .delete{
+.doctor-profile .left-part .account-btn .delete {
   border: none;
   height: 50px;
   border-radius: 10px;
@@ -1534,11 +1540,11 @@ header.scrolled {
 
 }
 
-.doctor-profile .right-part{
+.doctor-profile .right-part {
   width: 70%;
 }
 
-.doctor-profile .right-part .dprofile{
+.doctor-profile .right-part .dprofile {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1546,7 +1552,7 @@ header.scrolled {
 
 }
 
-.doctor-profile .right-part .dprofile .info{
+.doctor-profile .right-part .dprofile .info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1554,7 +1560,8 @@ header.scrolled {
   gap: 10px;
 
 }
-.doctor-profile .right-part .dprofile .info .designation{
+
+.doctor-profile .right-part .dprofile .info .designation {
   background: lightcoral;
   width: 10vw;
   height: 40px;
@@ -1566,20 +1573,20 @@ header.scrolled {
 
 }
 
-.doctor-profile .right-part .dabout{
+.doctor-profile .right-part .dabout {
   line-height: 30px;
   font-size: 20px;
   color: gray;
 }
 
-.doctor-profile .right-part .education .edetails{
+.doctor-profile .right-part .education .edetails {
   display: flex;
   flex-direction: column;
   gap: 20px;
 
 }
 
-.doctor-profile .right-part .education .edetails .info{
+.doctor-profile .right-part .education .edetails .info {
   display: flex;
   flex-direction: column;
   color: black;
@@ -1587,22 +1594,22 @@ header.scrolled {
   line-height: 30px;
 }
 
-.profile-doctor{
+.profile-doctor {
 
   width: 70%;
 
 }
 
-.profile-doctor .form{
+.profile-doctor .form {
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
   justify-content: flex-start;
- 
+
 }
 
-.profile-doctor .form-group{
+.profile-doctor .form-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1611,7 +1618,7 @@ header.scrolled {
   width: 70%;
 }
 
-.profile-doctor .form-control{
+.profile-doctor .form-control {
   border: 1px solid gainsboro;
   width: 100%;
   height: 45px;
@@ -1621,11 +1628,11 @@ header.scrolled {
   border-radius: 10px;
 }
 
-.profile-doctor .form-group input:focus{
+.profile-doctor .form-group input:focus {
   border: 1px solid gray;
 }
 
-.profile-doctor .form .col{
+.profile-doctor .form .col {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1633,11 +1640,11 @@ header.scrolled {
   gap: 20px;
 }
 
-.profile-doctor .form input[type='file']{
+.profile-doctor .form input[type='file'] {
   border: none;
 }
 
-.profile-doctor .form .col .form-select{
+.profile-doctor .form .col .form-select {
   border: 1px solid gainsboro;
   outline: none;
   height: 45px;
@@ -1647,7 +1654,8 @@ header.scrolled {
 }
 
 .custom-datepicker-wrapper {
-  border: none; /* Remove default border */
+  border: none;
+  /* Remove default border */
   width: 95%;
 
 }
@@ -1661,7 +1669,7 @@ header.scrolled {
   width: 100%;
 }
 
-.qualification-btn{
+.qualification-btn {
   border: none;
   background: blueviolet;
   color: white;
@@ -1675,7 +1683,7 @@ header.scrolled {
 
 }
 
-.remove-qualification-btn{
+.remove-qualification-btn {
   border: none;
   background: red;
   color: white;
@@ -1685,7 +1693,8 @@ header.scrolled {
   cursor: pointer;
 
 }
-.profile-doctor .form .submit-btn{
+
+.profile-doctor .form .submit-btn {
   background: #007bff;
   width: 70%;
   border: none;
@@ -1697,24 +1706,81 @@ header.scrolled {
   font-weight: bold;
 }
 
-/*---------*/
+.doctor-profile .appointment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 70%;
+  
+}
 
+.doctor-profile .appointment .table {
 
-@media only screen and (max-width: 1000px) {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 
-  body{
-    width: 100vw !important;
-    margin: auto;
-    overflow: auto;
-  }
+  width: 100%;
+  
 
 }
 
+.doctor-profile .appointment .table thead {
+  background: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+
+
+}
+
+.doctor-profile .appointment .table thead th {
+  padding-left: 25px;
+  padding-right: 25px;
+  font-weight: 600;
+
+}
+
+.doctor-profile .appointment .table tbody {
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+
+}
+
+.doctor-profile .appointment .table tbody tr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  border-bottom: 1px solid gainsboro;
+  width:100%;
+
+
+
+}
+
+.doctor-profile .appointment .table tbody tr:hover {
+  background: #ccc;
+}
+
+.doctor-profile .appointment .table tbody tr td {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+/*---------*/
+
+
 
 
 @media only screen and (max-width: 1000px) {
 
-  body{
+  body {
     width: 100vw !important;
     margin: auto;
     overflow: auto;
@@ -1769,7 +1835,7 @@ header.scrolled {
     align-items: center;
     justify-content: center;
     width: 100%;
-    
+
   }
 
   .hero .leftSection {
@@ -1827,7 +1893,7 @@ header.scrolled {
 
   .hero .rightSection .rpimg img {
     width: 60vw;
-    
+
   }
 
   .hero .rightSection .lpimg img {
@@ -1866,7 +1932,7 @@ header.scrolled {
     justify-content: center;
   }
 
-  .about .aboutProfile img{
+  .about .aboutProfile img {
     width: 300px;
     height: 300px;
   }
@@ -2139,26 +2205,26 @@ header.scrolled {
     margin-top: 15px;
   }
 
- 
+
 
   .doctor-info .right-side .ticket-card {
 
     position: relative;
     width: 80vw;
     margin: 0px;
-    
+
 
   }
 
-  .doctor-info .right-side .ticket-card .tslot{
-     font-size: 17px;
+  .doctor-info .right-side .ticket-card .tslot {
+    font-size: 17px;
   }
 
   .doctor-info .right-side .ticket-card .feedback-btn {
     padding: 10px;
   }
 
-  .login{
+  .login {
     padding-left: 10px;
     padding-right: 10px;
     min-height: 30vh;
@@ -2169,80 +2235,71 @@ header.scrolled {
     margin-bottom: 20px;
   }
 
-  .login .card{
+  .login .card {
     width: 100%;
     border-radius: 5px;
   }
 
-  .login .form-control{
+  .login .form-control {
     width: 80vw !important;
     height: 35px;
     font-size: 12px;
-    
+
   }
 
-  .login .row .submit-btn{
+  .login .row .submit-btn {
     padding: 10px;
     font-size: 13px;
   }
 
-  .register{
+  .register {
     padding-left: 10px;
     padding-right: 10px;
     height: auto;
     display: flex;
     flex-direction: column;
     width: 90vw;
-  
+
   }
 
-  
 
-  .register .banner{
+
+  .register .banner {
     display: none;
   }
 
-  .register .banner img{
+  .register .banner img {
     width: 10px;
-    
+
   }
 
-  .register .card-body{
+  .register .card-body {
     padding-top: 20px;
     padding-bottom: 20px;
   }
 
-  .register .card-body .form .form-control{
+  .register .card-body .form .form-control {}
 
-    
-  }
+  .register .card-body .form .form-select {}
 
-  .register .card-body .form .form-select{
-    
+  .register .card-body .form .col {}
 
-  }
-
-  .register .card-body .form .col{
-    
-
-  }
-
-  .register .card-footer{
+  .register .card-footer {
     margin-bottom: 20px;
   }
 
-  .contact{
+  .contact {
     padding-left: 10px;
     padding-right: 10px;
   }
 
-  .contact .contact-us{
+  .contact .contact-us {
     padding: 12px;
     font-size: 15px;
     font-weight: 500;
   }
 
-  .profile{
+  .profile {
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
@@ -2251,199 +2308,243 @@ header.scrolled {
     align-items: flex-start;
     justify-content: flex-start;
     gap: 20px;
-   
+
   }
 
-  .profile .left-part .profile-image img{
+  .profile .left-part .profile-image img {
     width: 80px;
     height: 80px;
     border-radius: 40px;
   }
 
-  .profile .left-part{
+  .profile .left-part {
     width: 40%;
 
   }
 
-  .profile .right-part{
+  .profile .right-part {
     width: 60%;
   }
 
-  .profile .left-part .card{
+  .profile .left-part .card {
     width: 100%;
   }
 
-  .profile .left-part .card .card-footer .logout{
+  .profile .left-part .card .card-footer .logout {
     width: 30vw;
     height: 30px;
     font-size: 12px;
   }
 
-  .profile .left-part .card .card-footer .delete{
+  .profile .left-part .card .card-footer .delete {
     width: 30vw;
     height: 30px;
     font-size: 12px;
   }
 
-  .profile .card .card-header{
+  .profile .card .card-header {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
   }
 
-  .profile .card .card-header .booking{
+  .profile .card .card-header .booking {
     height: 30px;
     width: 30vw;
     font-size: 12px;
   }
 
-  .profile .card .card-header .profile-setting{
+  .profile .card .card-header .profile-setting {
     height: 30px;
     width: 30vw;
     font-size: 12px;
   }
 
-  .doctor-profile{
-    padding-left: 10px;
-    padding-right: 10px;
+  .doctor-profile {
+    padding-left: 15px;
+    padding-right: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
     gap: 10px;
     display: flex;
     flex-direction: column;
-    
-    
+    align-items: center;
+    justify-content: center;
+
+
   }
 
-  .doctor-profile .left-part{
+  .doctor-profile .left-part {
     width: 90%;
     padding: 10px;
     border: none;
     box-shadow: none;
     display: flex;
     flex-direction: row;
+
     gap: 10px;
     position: relative !important;
-    
-    
-  } 
+    flex-wrap: wrap;
 
-  .doctor-profile .left-part .list ul{
+
+  }
+
+
+
+  .doctor-profile .left-part .list ul {
     display: flex;
     flex-direction: row;
     gap: 10px;
 
   }
 
-  .doctor-profile .left-part .list ul li{
+  .doctor-profile .left-part .list ul li {
     font-size: 13px;
-   
+    width: 100px;
+    height: 40px;
+
 
   }
-  .doctor-profile .left-part .list ul li.active{
+
+  .doctor-profile .left-part .list ul li.active {
     padding-left: 10px;
     padding-right: 10px;
   }
 
-  .doctor-profile .left-part .account-btn{
+  .doctor-profile .left-part .account-btn {
     display: flex;
     flex-direction: row;
-    
+
 
   }
-  .doctor-profile .left-part .account-btn .logout{
-    padding-left: 10px;
-    padding-right: 10px;
+
+  .doctor-profile .left-part .account-btn .logout {
+    padding: 0;
+    width: 100px;
+    height: 40px !important;
   }
 
-  .doctor-profile .left-part .account-btn .delete{
-    padding-left: 10px;
-    padding-right: 10px;
+  .doctor-profile .left-part .account-btn .delete {
+    padding: 0;
+    width: 100px;
+    height: 40px !important;
   }
 
 
-  .doctor-profile .right-part{
+  .doctor-profile .right-part {
     width: 100%;
   }
 
-  .doctor-profile .right-part .dprofile{
+  .doctor-profile .right-part .dprofile {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 15px;
-  
+
   }
 
-  .doctor-profile .right-part .dprofile .image img{
+  .doctor-profile .right-part .dprofile .image img {
     width: 120px;
     height: 120px;
     border-radius: 60px;
 
   }
-  .doctor-profile .right-part .dprofile .info{
+
+  .doctor-profile .right-part .dprofile .info {
     display: flex;
     align-items: center;
     justify-content: center;
-   
+
   }
 
-  .doctor-profile .right-part .dprofile .info .designation{
+  .doctor-profile .right-part .dprofile .info .designation {
     width: 40vw;
   }
 
-  .doctor-profile .left-part .list li{
+  .doctor-profile .left-part .list li {
     height: 30px;
     border-radius: 5px;
     font-weight: 400;
   }
 
-  .doctor-profile .left-part .account-btn .logout{
+  .doctor-profile .left-part .account-btn .logout {
     height: 30px;
     font-size: 12px;
-   
-  
-  }
-  
-  .doctor-profile .left-part .account-btn .delete{
-   
-    height: 30px;
-    font-size: 12px;
-    
-  
+
+
   }
 
-  .doctor-profile .right-part .education h2{
+  .doctor-profile .left-part .account-btn .delete {
+
+    height: 30px;
+    font-size: 12px;
+
+
+  }
+
+  .doctor-profile .overview-stas {
+
+    display: flex;
+    flex-direction: column !important;
+  }
+
+  .doctor-profile .right-part .education h2 {
     text-align: left !important;
   }
 
-  .doctor-profile .right-part .education .edetails .info{
+  .doctor-profile .right-part .education .edetails .info {
     font-size: 15px;
   }
 
-  .profile-doctor{
+  .profile-doctor {
 
     width: 100%;
-  
+
   }
 
-  .profile-doctor .form-group{
+  .profile-doctor .form-group {
     width: 90%;
   }
 
-  .profile-doctor .form .col{
+  .profile-doctor .form .col {
     width: 90%;
     gap: 10px;
   }
 
-  .profile-doctor .form .submit-btn{
+  .profile-doctor .form .submit-btn {
     width: 100%;
+    height: 40px;
     font-size: 14px;
+
+  }
+
+  .doctor-profile .appointment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
     
   }
 
+  .doctor-profile .appointment .table {
+    font-size: 10px;
+  }
+
+   
+
+
+
+
+
+
   
+
+
 
 
 

@@ -20,6 +20,7 @@ function DoctorProfile() {
     const dispatch = useDispatch();
     const [overView, setOverView] = useState(true)
     const [profile, setProfile] = useState(false)
+    const [appointment, setAppointment] = useState(false)
     const [file, setFile] = useState(undefined)
     const [filePerc, setFilePerc] = useState(0);
     const [fileUploadError, setFileUploadError] = useState(false)
@@ -43,12 +44,20 @@ function DoctorProfile() {
     const handleOverview = () => {
         setOverView(true)
         setProfile(false)
+        setAppointment(false)
 
     }
 
     const handleProfile = () => {
         setOverView(false)
         setProfile(true)
+        setAppointment(false)
+    }
+
+    const handleAppointment = () => {
+        setAppointment(true)
+        setProfile(false)
+        setOverView(false)
     }
 
     const [formData, setFormData] = useState({})
@@ -457,7 +466,7 @@ function DoctorProfile() {
                     <div className='list'>
                         <ul>
                             <li className={overView ? 'active' : ''} onClick={handleOverview}>Overview</li>
-                            <li>Appointments</li>
+                            <li className={appointment ? 'active' : ''} onClick={handleAppointment}>Appointments</li>
                             <li className={profile ? 'active' : ''} onClick={handleProfile}>Profile</li>
                         </ul>
 
@@ -490,7 +499,7 @@ function DoctorProfile() {
                             </p>
                         </div>
 
-                        <div style={{ display: "flex", gap: "15px" }}>
+                        <div className='overview-stas' style={{ display: "flex", gap: "15px" }}>
 
                             <div className='education'>
                                 <h2>Education</h2>
@@ -567,8 +576,8 @@ function DoctorProfile() {
                                                     <span>{item.day}</span>
                                                     <span>
                                                         {item.startTime}{' '} -   {item.endTime}{' '}
-                                                      
-                                                        
+
+
                                                     </span>
                                                 </div>
                                             ))}
@@ -594,6 +603,42 @@ function DoctorProfile() {
 
                     </div>
 
+                )}
+
+                {appointment && (
+                    <div className='appointment'>
+                        <h2>Patient Appoint History</h2>
+                        <table className='table'>
+                            <thead>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Payment</th>
+                                <th>Price</th>
+                                <th>Booked On</th>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Gender</td>
+                                    <td>Payment</td>
+                                    <td>Price</td>
+                                    <td>Booked On</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Gender</td>
+                                    <td>Payment</td>
+                                    <td>Price</td>
+                                    <td>Booked On</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
                 )}
 
                 {profile && (
@@ -765,7 +810,7 @@ function DoctorProfile() {
 
                                         <div className='col'>
                                             <div class="form-group">
-                                                <label for="edegree">Degree</label>
+                                                <label for="edegree">Position</label>
                                                 <input
                                                     type='text'
                                                     className='form-control'
@@ -777,7 +822,7 @@ function DoctorProfile() {
                                             </div>
 
                                             <div class="form-group" style={{ marginLeft: "15px" }}>
-                                                <label for="euniversity">University</label>
+                                                <label for="euniversity">Hospital</label>
                                                 <input
                                                     type='text'
                                                     className='form-control'
