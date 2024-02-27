@@ -6,9 +6,12 @@ import About from '../components/About'
 import MedicalService from '../components/MedicalService'
 import Virtual from '../components/Virtual'
 import DoctorList from "../components/DoctorList";
+import { useState } from 'react'
 
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <>
 
@@ -22,7 +25,7 @@ export default function Home() {
 
       <Virtual />
 
-      <DoctorList />
+      <DoctorList  searchQuery={searchQuery} />
 
       <FAQ />
 

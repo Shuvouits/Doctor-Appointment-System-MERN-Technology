@@ -6,9 +6,11 @@ import { FaStar } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useEffect, useState } from "react";
 
-export default function DoctorList() {
+export default function DoctorList({ searchQuery }) {
 
     const [doctor, setDoctor] = useState({})
+
+    console.log(searchQuery)
 
     const allDoctor = async () => {
 
@@ -31,13 +33,18 @@ export default function DoctorList() {
 
         }
 
+
+
+
     };
 
+
+
     useEffect(() => {
+
         allDoctor();
+
     }, []);
-
-
 
 
 
@@ -53,56 +60,59 @@ export default function DoctorList() {
 
                 {doctor && doctor.length > 0 ? (
                     <>
-                        {doctor.map((item, index) => (
-
-                            <Link className="customLink" to={`/${item.fullName}/${item._id}`}>
-
-                                <div className='card'>
-                                    <div className='cardImg'>
-                                        {item.avatar ? (
-
-                                            <img src={item.avatar} width={'400px'} height={'400px'} style={{borderRadius: '25px'}} />
-
-                                        ) : (
-
-                                            <img src={Doctor1} width={'400px'} />
-
-                                        )}
-
-
-
+                        {doctor
+                            .filter(item => {
+                                // Customize the condition based on your search requirements
+                                const searchTerms = searchQuery.toLowerCase().split(' ');
+                                return searchTerms.every(term =>
+                                    (item.fullName && item.fullName.toLowerCase().includes(term)) ||
+                                    (item.email && item.email.toLowerCase().includes(term)) ||
+                                    (item.speciality && item.speciality.toLowerCase().includes(term))
+                                );
+                            })
+                            .map((item, index) => (
+                                <Link key={item._id} className="customLink" to={`/${item.fullName}/${item._id}`}>
+                                    <div className='card'>
+                                        <div className='cardImg'>
+                                            {item.avatar ? (
+                                                <img src={item.avatar} width={'400px'} height={'400px'} style={{ borderRadius: '25px' }} />
+                                            ) : (
+                                                <img src={Doctor1} width={'400px'} />
+                                            )}
+                                        </div>
+                                        <div className='dname'>{item.fullName} <span style={{ color: 'gray', fontWeight: '450', marginLeft: '20px' }}>{item.email}</span></div>
+                                        <div className='mid-info'>
+                                            <span className='designation'>{item.speciality}</span>
+                                            <span className='score'>
+                                                <span className='starIcon'><FaStar /></span>
+                                                4.8 (272)
+                                            </span>
+                                        </div>
+                                        <div className='last-info'>
+                                            <div className='count'>+1500 patients</div>
+                                            <div className='icon'><IoIosArrowRoundForward /></div>
+                                        </div>
                                     </div>
+                                </Link>
+                            ))
+                        }
+
+                        {doctor.length > 0 && !doctor.some(item =>
+                            (item.fullName && item.fullName.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                            (item.email && item.email.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                            (item.speciality && item.speciality.toLowerCase().includes(searchQuery.toLowerCase()))
+                        ) && (
+                                <span style={{ color: 'red', fontSize: '20px', textAlign: 'center', fontWeight: 'bold', width: '100vw' }}>Not Get Any Searching Doctor</span>
+                            )}
 
 
-                                    <div className='dname'>{item.fullName} <span style={{color: 'gray', fontWeight: '450', marginLeft: '20px'}}>{item.email}</span></div>
-                               
-                                    
 
-
-
-                                    <div className='mid-info'>
-                                        <span className='designation'>{item.speciality}</span>
-                                        <span className='score'>
-                                            <span className='starIcon'><FaStar /></span>
-                                            4.8 (272)
-                                        </span>
-
-                                    </div>
-                                    <div className='last-info'>
-                                        <div className='count'>+1500 patients</div>
-                                        <div className='icon'><IoIosArrowRoundForward /></div>
-
-                                    </div>
-                                </div>
-
-                            </Link>
-
-                        ))}
                     </>
-
                 ) : (
                     <div>No Doctor Found</div>
                 )}
+
+
 
 
 
