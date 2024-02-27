@@ -465,6 +465,18 @@ header.scrolled {
   gap: 20px;
 }
 
+.doctorList-container {
+  position: relative;
+}
+
+.doctorList-container .spinners {
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%, -50%);
+  opacity: 1 !important;
+}
+
 .doctorList {
   margin-top: 20px;
   padding-left: 150px;

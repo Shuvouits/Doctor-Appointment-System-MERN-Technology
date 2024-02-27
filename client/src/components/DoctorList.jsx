@@ -5,10 +5,12 @@ import Doctor3 from "../images/doctor-img03.png"
 import { FaStar } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useEffect, useState } from "react";
+import { BeatLoader } from 'react-spinners';
 
 export default function DoctorList({ searchQuery }) {
 
     const [doctor, setDoctor] = useState({})
+    const [loading, setLoading] = useState(true)
 
     console.log(searchQuery)
 
@@ -26,6 +28,7 @@ export default function DoctorList({ searchQuery }) {
 
 
             if (res.status === 200) {
+                setLoading(false)
                 setDoctor(data);
 
             }
@@ -50,7 +53,20 @@ export default function DoctorList({ searchQuery }) {
 
     return (
 
-        <div className='doctorList'>
+       <div className="doctorList-container">
+
+{
+                loading && (
+
+                    <div className='spinners'>
+                        <BeatLoader color="red" />
+                    </div>
+
+                )
+            }
+
+
+<div className='doctorList' style={{ opacity: loading ? '0.3' : '1' }}>
             <div className='title'>
                 <h3>Our <span className="text-primary">Doctor</span> List</h3>
                 <p>World-class care for everyone. Our health System offers<br></br>unmatched, expert health care</p>
@@ -109,7 +125,7 @@ export default function DoctorList({ searchQuery }) {
 
                     </>
                 ) : (
-                    <div>No Doctor Found</div>
+                    <div></div>
                 )}
 
 
@@ -125,5 +141,11 @@ export default function DoctorList({ searchQuery }) {
 
 
         </div>
+
+
+
+       </div>
+
+      
     )
 }
