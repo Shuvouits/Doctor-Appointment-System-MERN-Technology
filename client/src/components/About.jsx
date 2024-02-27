@@ -1,12 +1,13 @@
 import React from 'react'
-import about from "../images/about.png"
+import about from "../images/samanta-patel-dr-upscaled.jpg"
+import { Link } from 'react-router-dom'
 
 export default function About() {
     return (
         <div className='about'>
 
             <div className='aboutProfile'>
-                <img src={about} />
+                <img src={about} width={500} height={500}/>
                 <div className='sticker'>
 
                     <div className='circle'>
@@ -22,8 +23,8 @@ export default function About() {
                         </div>
 
                         <div className='profile-bio'>
-                            <h3>Dr. Mitchell Starc</h3>
-                            <p>Cheif Doctor of Nursing</p>
+                            <h3>Dr. Samantha Patel </h3>
+                            <p>Cheif Doctor of Nuerology</p>
                         </div>
 
                     </div>
@@ -36,17 +37,22 @@ export default function About() {
             <div className='aboutDesc'>
                 <h3 className='title'>Proud to be one of the nations best</h3>
                 <p className='description'>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                    as opposed to using 'Content here, content here', making it look like readable English.
-                    <br></br>
-                    <br></br>
-                    It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                    The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                    as opposed to using 'Content here, content here', making it look like readable English.
+                "Dr. Samantha Patel, a distinguished neurology specialist, takes immense pride in being 
+                recognized as one of the nation's best doctors. With a passion for advancing 
+                neurological care, she has dedicated her career to providing exceptional expertise
+                 and compassionate service to her patients. Driven by a commitment to excellence, 
+                 she remains at the forefront of advancements in neurology, ensuring the highest
+                  standard of care for those seeking neurological health solutions. Her dedication, 
+                  coupled with a relentless pursuit of knowledge, solidifies her position as a trusted
+                   and respected figure in the medical community, bringing hope and healing to those in 
+                   need"
+                   
                 </p>
                 <div className='learnMore'>
-                    <button className='loginBtn'>Learn More</button>
+                    <Link to={'http://localhost:5173/Dr.%20Samantha%20Patel/65c7b7eac0eeb49f5e22a763'}>
+                    <button className='loginBtn'>Book Now</button>
+                    </Link>
+                    
                 </div>
             </div>
 

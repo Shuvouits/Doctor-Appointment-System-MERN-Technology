@@ -1,6 +1,7 @@
 import Feature from "../images/feature-img.png"
 import Avatar from "../images/avatar-icon.png"
 import { FiBell } from "react-icons/fi";
+import virtual from "../images/july-jhonson-dr (1).jpg"
 
 export default function Virtual() {
   return (
@@ -8,7 +9,7 @@ export default function Virtual() {
 
         <div className='leftPart'>
           <div className='title'>
-            <h3>Get Virtual treatment anytime</h3>
+            <h3>Get <span className="text-primary">Virtual treatment</span> anytime</h3>
           </div>
           <div className='list'>
             <ul>
@@ -25,7 +26,7 @@ export default function Virtual() {
         </div>
 
         <div className='rightPart'>
-          <img className='feature' src={Feature} />
+          <img className='feature' src={virtual} width={500} height={500}/>
           <div className='sticker'>
             <div className='round1'>
               <div><p>Tue 21 10.03AM</p></div>
@@ -37,7 +38,7 @@ export default function Virtual() {
 
             <div style={{display: "flex", alignItems: 'center', justifyContent:'space-between', gap:"10px"}}>
             <div className='round3'>
-              <img src={Avatar} />
+              <img src={virtual} width={40} height={40} style={{borderRadius: '60px'}} />
               <p>Jhon Doe</p>
             </div>
             <div className='round2'><span className='way'>Consultation</span></div>

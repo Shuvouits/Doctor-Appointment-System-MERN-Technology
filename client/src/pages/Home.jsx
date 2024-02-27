@@ -16,7 +16,7 @@ export default function Home() {
 
       <Services />
 
-      <About />
+      <About />  
 
       <MedicalService />
 
@@ -26,7 +26,25 @@ export default function Home() {
 
       <FAQ />
 
-      <Testimonial  />
+      <Testimonial  /> 
+
+      {/* 
+    
+  
+
+      
+
+      
+
+      
+
+     
+
+    
+
+          */}
+
+      
       <div style={{marginBottom: "100px"}}></div>
       
 

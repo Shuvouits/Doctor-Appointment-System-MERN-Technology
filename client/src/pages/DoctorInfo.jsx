@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import doctor from "../images/doctor-img01.png";
 import { FaStar } from "react-icons/fa";
+import { useParams } from 'react-router-dom';
+import { format } from 'date-fns';
 
 
 function DoctorInfo() {
+  const { id, doctorName } = useParams();
+  console.log(id);
+
+  const [specificDoctor, setSpecificDoctor] = useState({});
+
   const [activeTab, setActiveTab] = useState('about');
 
   const [feedback, setFeedback] = useState(false)
@@ -17,16 +24,45 @@ function DoctorInfo() {
     setUserRating(rating);
   };
 
+  const findDoctor = async () => {
+
+    try {
+      const res = await fetch(`http://localhost:4000/specific-doctor/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+
+      const data = await res.json();
+
+      if (res.status === 200) {
+        setSpecificDoctor(data);
+
+      }
+
+    } catch (error) {
+      return (error)
+
+    }
+
+  };
+
+  useEffect(() => {
+    findDoctor();
+  }, []);
+
   return (
     <div className='doctor-info'>
       <div className='left-side'>
         <div className='doctor-card'>
           <div className='dimage'>
-            <img src={doctor} alt="Doctor" />
+            <img src={specificDoctor.avatar} style={{ borderRadius: '20px' }} width={'350px'} height={'350px'} alt="Doctor" />
           </div>
           <div className='d-details'>
-            <span className='designation'>Surgeon</span>
-            <span className='dname'>Rokibul Islam</span>
+            <span className='designation'>{specificDoctor.speciality}</span>
+            <span className='dname'>{specificDoctor.fullName}</span>
             <div className='rating'>
               <span className='icon'>
                 <FaStar />
@@ -34,7 +70,9 @@ function DoctorInfo() {
               <span className='score'>4.8 (272)</span>
             </div>
             <br />
-            <span className='description'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using</span>
+            <span className='description'>
+              {specificDoctor.bio}
+            </span>
           </div>
         </div>
 
@@ -57,15 +95,9 @@ function DoctorInfo() {
         {activeTab === 'about' && (
           <div className="tab-content">
             {/* Content for the 'About' tab */}
-            <h3>About of <span>Mohibur Rahaman</span></h3>
+            <h3>About of <span>{specificDoctor.fullName}</span></h3>
             <p style={{ lineHeight: "30px", fontSize: "17px", margin: "0px" }}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-              It has survived not only five centuries, but also the leap into electronic typesetting,
-              remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-              sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-              like Aldus PageMaker including versions of Lorem Ipsum.
+              {specificDoctor.about}
             </p>
 
             <div className='qualification'>
@@ -73,19 +105,23 @@ function DoctorInfo() {
 
               <div className='row'>
 
-                <div className='education'>
-                  <span className='date'>13 Septembar 2014</span>
-                  <span className='degree'>P.H.D. In Surgon</span>
-                  <span className='hospital'>Dhaka Medical College</span>
+                {specificDoctor.qualifications && specificDoctor.qualifications.length > 0 ? (
+                  <div>
+                    {specificDoctor.qualifications.map((item, index) => (
+                      <div className='education'>
+                        <span className='date'>{format(item.startDate, 'MMMM-yyyy-dd')} - {format(item.endDate, 'MMMM-yyyy-dd')}</span>
+                        <span className='degree'>{specificDoctor.speciality}</span>
+                        <span className='hospital'>{item.qdegree}</span>
 
-                </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div>No education history yet</div>
+                )}
 
-                <div className='education'>
-                  <span className='date'>13 Septembar 2014</span>
-                  <span className='degree'>P.H.D. In Surgon</span>
-                  <span className='hospital'>Dhaka Medical College</span>
 
-                </div>
+
 
               </div>
 
@@ -99,19 +135,20 @@ function DoctorInfo() {
 
               <div className='row'>
 
-                <div className='education'>
-                  <span className='date'>13 Septembar 2014</span>
-                  <span className='degree'>P.H.D. In Surgon</span>
-                  <span className='hospital'>Dhaka Medical College</span>
+                {specificDoctor.experience && specificDoctor.experience.length > 0 ? (
+                  <div>
+                    {specificDoctor.experience.map((item, index) => (
+                      <div className='education'>
+                        <span className='date'>{format(item.estartDate, 'MMMM-yyyy-dd')} - {format(item.eendDate, 'MMMM-yyyy-dd')}</span>
+                        <span className='degree'>{specificDoctor.speciality}</span>
+                        <span className='hospital'>{item.edegree}</span>
 
-                </div>
-
-                <div className='education'>
-                  <span className='date'>13 Septembar 2014</span>
-                  <span className='degree'>P.H.D. In Surgon</span>
-                  <span className='hospital'>Dhaka Medical College</span>
-
-                </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div>No education history yet</div>
+                )}
 
               </div>
 
@@ -207,6 +244,8 @@ function DoctorInfo() {
           </div>
         )}
 
+        <div style={{ marginBottom: "100px" }}></div>
+
       </div>
 
 
@@ -219,21 +258,47 @@ function DoctorInfo() {
 
           <div className='first'>
             <span className='ticket'>Ticket Price</span>
-            <span className='tprice'>500 TK.</span>
+            <span className='tprice'>{specificDoctor.ticket} TK.</span>
           </div>
 
           <div className='second'>
             <span className='tslot'>Available Time Slot</span>
             <div className='appoint'>
+
+           
+
               <div className='day'>
-                <span>Saturday</span>
-                <span>Sunday</span>
-                <span>Monday</span>
+
+              {specificDoctor.time && specificDoctor.time.length > 0 ? (
+                  <div>
+                    {specificDoctor.time.map((item, index) => (
+                      
+                      <>
+                        <span style={{textTransform:"uppercase"}}>{item.day}</span>
+                        <br></br>
+                        <br></br>
+                      </>
+                    ))}
+                  </div>
+                ) : (
+                  <div>No setting time yet</div>
+                )}
               </div>
               <div className='time'>
-                <span>4.00PM - 9.30PM</span>
-                <span>4.00PM - 9.30PM</span>
-                <span>4.00PM - 9.30PM</span>
+              {specificDoctor.time && specificDoctor.time.length > 0 ? (
+                  <div>
+                    {specificDoctor.time.map((item, index) => (
+                      
+                      <>
+                        <span style={{textTransform:"uppercase"}}>{item.startTime} - {item.endTime}</span>
+                        <br></br>
+                        <br></br>
+                      </>
+                    ))}
+                  </div>
+                ) : (
+                  <div>No setting time yet</div>
+                )}
               </div>
             </div>
             <br></br>
@@ -242,6 +307,9 @@ function DoctorInfo() {
 
         </div>
       </div>
+
+
+
     </div>
   );
 }

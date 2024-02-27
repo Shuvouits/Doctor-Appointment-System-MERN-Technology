@@ -1,5 +1,5 @@
 
-import heroImg1 from "../images/hero-img01.png"
+import heroImg1 from "../images/dr-christopher-evans (3).jpg"
 import heroImg2 from "../images/hero-img02.png"
 import heroImg3 from "../images/hero-img03.png"
 
@@ -8,7 +8,7 @@ export default function Hero() {
     <div className='hero'>
         <div className='leftSection'>
           <div className='headline'>
-            <h2>We help Patients live a healthy, longer life</h2>
+            <h2>We help Patients <span className="text-primary">live a healthy</span>, longer life</h2>
           </div>
           <div className='description'>
             <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
@@ -26,13 +26,13 @@ export default function Hero() {
             </div>
 
             <div>
-              <p className='scoreCount'>30+</p>
+              <p className='scoreCount'>10+</p>
               <p className='scoreTag'>Clinic Location</p>
 
             </div>
 
             <div>
-              <p className='scoreCount'>30+</p>
+              <p className='scoreCount'>200+</p>
               <p className='scoreTag'>Patient Satisfaction</p>
 
             </div>
@@ -44,13 +44,9 @@ export default function Hero() {
         <div className='rightSection'>
 
           <div className='rpimg'>
-            <img src={heroImg1} />
+            <img src={heroImg1} style={{borderRadius: '20px'}} />
           </div>
-          <div className='lpimg' >
-            <img src={heroImg2} />
-            <img src={heroImg3} />
-
-          </div>
+         
 
         </div>
 

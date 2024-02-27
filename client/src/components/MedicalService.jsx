@@ -1,68 +1,92 @@
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
+import cancer from "../images/2885298.png"
+import heart from "../images/954406.png"
+import stomach from "../images/2864292.png"
+import mental from "../images/3998035.png"
+import nuerology from "../images/4006171.png"
+
 
 export default function MedicalService() {
     return (
         <div className='medicalServices'>
             <div className='medicalInfo'>
-                <h3>Our Medical Services</h3>
+                <h3>Our <span className="text-primary">Medical</span> Services</h3>
                 <p>World Class care for everyone. Our health System offers<br></br>unmatched expert health care.</p>
             </div>
 
+            <br></br>
+
             <div className='mdserviceLoop'>
 
-                <div className='medicalDesc'>
-                    <h3>Cancer Care</h3>
-                    <p>World Class care for everyone. Our health System offers unmatched , expert health care. From there lab to be clinic</p>
-                    <div className='mediLast'>
-                        <FaRegArrowAltCircleRight className='icon' />
-                        <span className='number'>1</span>
+                <div className="about-card">
+                    <div className="card-body">
+                        <div className="icon">
+                            <img src={cancer} width={100} height={100} />
+                        </div>
+                        <div className="title">
+                            <h3>Cancer Care</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className="about-card">
+
+                    <div className="card-body">
+                        <div className="icon">
+                            <img src={heart} width={100} height={100} />
+                        </div>
+                        <div className="title">
+                            <h3>Heart & Vescular</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className="about-card">
+
+                    <div className="card-body">
+                        <div className="icon">
+                            <img src={stomach} width={100} height={100} />
+                        </div>
+                        <div className="title">
+                            <h3>Labour & Delivery</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className="about-card">
+
+                    <div className="card-body">
+                        <div className="icon">
+                            <img src={mental} width={100} height={100} />
+                        </div>
+                        <div className="title">
+                            <h3>Mental Health</h3>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className="about-card">
+                <div className="card-body">
+                        <div className="icon">
+                            <img src={nuerology} width={100} height={100} />
+                        </div>
+                        <div className="title">
+                            <h3>Nuerology</h3>
+                        </div>
+
                     </div>
                 </div>
 
-                <div className='medicalDesc'>
-                    <h3>Heart & Vescular</h3>
-                    <p>World Class care for everyone. Our health System offers unmatched , expert health care. From there lab to be clinic</p>
-                    <div className='mediLast'>
-                        <FaRegArrowAltCircleRight className='icon' />
-                        <span className='number'>2</span>
-                    </div>
-                </div>
 
-                <div className='medicalDesc'>
-                    <h3>Labour & Delivery</h3>
-                    <p>World Class care for everyone. Our health System offers unmatched , expert health care. From there lab to be clinic</p>
-                    <div className='mediLast'>
-                        <FaRegArrowAltCircleRight className='icon' />
-                        <span className='number'>3</span>
-                    </div>
-                </div>
 
-                <div className='medicalDesc'>
-                    <h3>Mental Health</h3>
-                    <p>World Class care for everyone. Our health System offers unmatched , expert health care. From there lab to be clinic</p>
-                    <div className='mediLast'>
-                        <FaRegArrowAltCircleRight className='icon' />
-                        <span className='number'>4</span>
-                    </div>
-                </div>
-
-                <div className='medicalDesc'>
-                    <h3>Nuerology</h3>
-                    <p>World Class care for everyone. Our health System offers unmatched , expert health care. From there lab to be clinic</p>
-                    <div className='mediLast'>
-                        <FaRegArrowAltCircleRight className='icon' />
-                        <span className='number'>5</span>
-                    </div>
-                </div>
-
-                <div className='medicalDesc'>
-                    <h3>Burn Treatment</h3>
-                    <p>World Class care for everyone. Our health System offers unmatched , expert health care. From there lab to be clinic</p>
-                    <div className='mediLast'>
-                        <FaRegArrowAltCircleRight className='icon' />
-                        <span className='number'>6</span>
-                    </div>
-                </div>
 
 
 

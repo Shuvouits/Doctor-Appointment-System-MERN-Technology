@@ -74,7 +74,7 @@ const TestimonialCarousel = () => {
   return (
     <div className='testmonial'>
       <div className='tmdes'>
-        <h3>What our patient say</h3>
+        <h3>What <span className='text-primary'>our patient</span> say</h3>
         <p>World-class care for everyone. Our health System offers <br></br>unmatched, expert care</p>
       </div>
 

@@ -45,7 +45,7 @@ export default function DoctorList() {
 
         <div className='doctorList'>
             <div className='title'>
-                <h3>Our Doctor List</h3>
+                <h3>Our <span className="text-primary">Doctor</span> List</h3>
                 <p>World-class care for everyone. Our health System offers<br></br>unmatched, expert health care</p>
             </div>
 
@@ -61,7 +61,7 @@ export default function DoctorList() {
                                     <div className='cardImg'>
                                         {item.avatar ? (
 
-                                            <img src={item.avatar} width={'400px'} style={{borderRadius: '15px'}} />
+                                            <img src={item.avatar} width={'400px'} height={'400px'} style={{borderRadius: '25px'}} />
 
                                         ) : (
 
@@ -74,8 +74,9 @@ export default function DoctorList() {
                                     </div>
 
 
-                                    <div className='dname'>{item.fullName}</div>
-                                    <span>{item.email}</span>
+                                    <div className='dname'>{item.fullName} <span style={{color: 'gray', fontWeight: '450', marginLeft: '20px'}}>{item.email}</span></div>
+                               
+                                    
 
 
 

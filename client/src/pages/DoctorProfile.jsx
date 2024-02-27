@@ -60,13 +60,14 @@ function DoctorProfile() {
         setOverView(false)
     }
 
+    
+
+
+
+
+
+
     const [formData, setFormData] = useState({})
-
-
-
-
-
-
 
 
     const handleChange = (e) => {
@@ -224,7 +225,50 @@ function DoctorProfile() {
 
 
 
+    //Account delete functionality
+    const handleDelete = async() =>{
+        try {
 
+            const res = await fetch('http://localhost:4000/delete-user', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`,
+                }
+            });
+
+            const data = await res.json();
+
+            if (res.status === 200) {
+                dispatch({ type: "LOGOUT", payload: null });
+                Cookies.set("user", null);
+
+                Swal.fire({
+                    toast: true,
+                    position: 'top-right',
+                    animation: true,
+                    text: 'Account deleted successfully',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    customClass: {
+                        container: 'custom-toast-container',
+                        popup: 'custom-toast-popup',
+                        title: 'custom-toast-title',
+                        icon: 'custom-toast-icon',
+                    },
+                });
+
+
+                navigate('/login')
+            }
+
+        } catch (error) {
+            return (error)
+
+        }
+    }
 
 
     //log out functionality
@@ -286,7 +330,6 @@ function DoctorProfile() {
             });
             const data = await res.json();
             setUserData(data);
-            console.log('data = ', data);
 
 
             if (res.status === 200) {
@@ -310,6 +353,10 @@ function DoctorProfile() {
         }
 
     };
+
+    useEffect(() => {
+        fetchDoctorProfile();
+    }, []);
 
 
     //Data Update form
@@ -437,9 +484,7 @@ function DoctorProfile() {
 
     //End
 
-    useEffect(() => {
-        fetchDoctorProfile();
-    }, []);
+   
 
 
     console.log(qualifications);
@@ -473,7 +518,7 @@ function DoctorProfile() {
                     </div>
                     <div className='account-btn'>
                         <button className='logout' onClick={handleLogout}>LogOut</button>
-                        <button className='delete'>Delete Account</button>
+                        <button className='delete' onClick={handleDelete}>Delete Account</button>
 
                     </div>
                 </div>
@@ -546,7 +591,7 @@ function DoctorProfile() {
                                                     <span>
                                                         {item.edegree}{' '}
                                                         <span style={{ color: 'blue', fontWeight: 'bold' }}>
-                                                            ({format(item.estartDate, 'yyyy-MM-dd')} - {format(item.eendDate, 'yyyy-MM-dd')})
+                                                            ({format(item.estartDate, 'yyyy-MM-dd')} - {format(item.eendDate, 'yyyy-MM-dd')})  
                                                         </span>
                                                     </span>
                                                 </div>
@@ -719,6 +764,7 @@ function DoctorProfile() {
                                                     selected={qualification.startDate}
                                                     onChange={(date) => handleQualificationChange(qualification.id, 'startDate', date)}
                                                     dateFormat="dd/MM/yyyy"
+                                                    required
                                                 />
                                             </div>
 
@@ -730,6 +776,7 @@ function DoctorProfile() {
                                                     selected={qualification.endDate}
                                                     onChange={(date) => handleQualificationChange(qualification.id, 'endDate', date)}
                                                     dateFormat="dd/MM/yyyy"
+                                                    required
                                                 />
                                             </div>
 
@@ -791,6 +838,7 @@ function DoctorProfile() {
                                                     selected={experience.estartDate}
                                                     onChange={(date) => handleExperienceChange(experience.id, 'estartDate', date)}
                                                     dateFormat="dd/MM/yyyy"
+                                                    required
                                                 />
                                             </div>
 
@@ -802,6 +850,7 @@ function DoctorProfile() {
                                                     selected={experience.eendDate}
                                                     onChange={(date) => handleExperienceChange(experience.id, 'eendDate', date)}
                                                     dateFormat="dd/MM/yyyy"
+                                                    required
                                                 />
                                             </div>
 
@@ -996,7 +1045,7 @@ function DoctorProfile() {
                                 )
                             }
 
-                            <button type='submit' disabled={imagePreview ? 'disabled' : ''} className='submit-btn' style={{ background: loading || imageLoading ? 'red' : '', cursor: loading || imageLoading ? 'not-allowed' : 'pointer' }}>
+                            <button type='submit'  className='submit-btn' style={{ background: loading || imageLoading ? 'red' : '', cursor: loading || imageLoading ? 'not-allowed' : 'pointer' }}>
                                 {loading ? 'Profile Updated....' : 'Update'}
 
                             </button>

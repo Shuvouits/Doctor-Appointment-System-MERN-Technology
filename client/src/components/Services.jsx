@@ -8,7 +8,7 @@ export default function Services() {
         <div className='services'>
 
             <div className='serviceTitle'>
-                <h2 style={{ textAlign: "center" }}>Providing the best medical services</h2>
+                <h2 style={{ textAlign: "center" }}>Providing the <span className="text-primary">best medical</span> services</h2>
                 <p style={{ textAlign: "center" }}>World class care for everyone. Our health System offers<br></br>unmatched, expert health care</p>
             </div>
 
