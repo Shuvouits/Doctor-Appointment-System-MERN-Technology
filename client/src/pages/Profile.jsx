@@ -244,9 +244,9 @@ function Profile() {
                 <img src={formData.avatar} />
               </div>
               <div className='profile-info'>
-                <span style={{ textTransform: 'capitalize' }}>{user.fullName}</span>
-                <span>{user.email}</span>
-                <span>Blood Group: {user.blood}</span>
+                <span style={{ textTransform: 'capitalize' }}> Name : {user.fullName}</span>
+                <span style={{ textTransform: 'capitalize'}}>Email : {user.email}</span>
+                <span style={{ textTransform: 'capitalize'}}>Blood Group: {user.blood}</span>
               </div>
             </div>
             <div className='card-footer'>
@@ -259,7 +259,7 @@ function Profile() {
         <div className='right-part'>
           <div className='card'>
             <div className='card-header'>
-              <button className='booking' onClick={handleBooking}>My Bookings</button>
+              <button className='profile-booking' onClick={handleBooking}>My Bookings</button>
               <button className='profile-setting' onClick={handleProfile}>Profile Settings</button>
             </div>
             <div className='card-body'>

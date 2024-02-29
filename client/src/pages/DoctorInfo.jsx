@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import doctor from "../images/doctor-img01.png";
 import { FaStar } from "react-icons/fa";
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { format } from 'date-fns';
+import { useSelector } from 'react-redux';
+//import { loadStripe } from '@stripe/stripe-js';
+
 
 
 function DoctorInfo() {
+  const { user } = useSelector((state) => ({ ...state }))
   const { id, doctorName } = useParams();
-  console.log(id);
 
   const [specificDoctor, setSpecificDoctor] = useState({});
 
@@ -53,6 +56,37 @@ function DoctorInfo() {
     findDoctor();
   }, []);
 
+  
+ const bookingHandler = async() => {
+
+  try {
+    const res = await fetch(`http://localhost:4000/stripe-payment/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : `Bearer ${user.token}`
+      },
+    });
+
+
+    const data = await res.json();
+    console.log(data);
+
+    if(data.session.url){
+      window.location.href = data.session.url
+    }
+
+  } catch (error) {
+    return (error)
+
+  }
+ 
+
+
+ }
+ 
+ 
+ 
   return (
     <div className='doctor-info'>
       <div className='left-side'>
@@ -265,16 +299,14 @@ function DoctorInfo() {
             <span className='tslot'>Available Time Slot</span>
             <div className='appoint'>
 
-           
-
               <div className='day'>
 
-              {specificDoctor.time && specificDoctor.time.length > 0 ? (
+                {specificDoctor.time && specificDoctor.time.length > 0 ? (
                   <div>
                     {specificDoctor.time.map((item, index) => (
-                      
+
                       <>
-                        <span style={{textTransform:"uppercase"}}>{item.day}</span>
+                        <span style={{ textTransform: "uppercase" }}>{item.day}</span>
                         <br></br>
                         <br></br>
                       </>
@@ -284,13 +316,14 @@ function DoctorInfo() {
                   <div>No setting time yet</div>
                 )}
               </div>
+
               <div className='time'>
-              {specificDoctor.time && specificDoctor.time.length > 0 ? (
+                {specificDoctor.time && specificDoctor.time.length > 0 ? (
                   <div>
                     {specificDoctor.time.map((item, index) => (
-                      
+
                       <>
-                        <span style={{textTransform:"uppercase"}}>{item.startTime} - {item.endTime}</span>
+                        <span style={{ textTransform: "uppercase" }}>{item.startTime} - {item.endTime}</span>
                         <br></br>
                         <br></br>
                       </>
@@ -301,8 +334,14 @@ function DoctorInfo() {
                 )}
               </div>
             </div>
-            <br></br>
-            <button className='feedback-btn'>Book Appoint</button>
+            
+
+           
+
+              <button className='feedback-btn' onClick={bookingHandler}>Book Appoint</button>
+
+           
+
           </div>
 
         </div>

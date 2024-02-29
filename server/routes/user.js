@@ -1,5 +1,5 @@
 const express = require('express')
-const{Register, Login, signOut, profileUpdate, doctorProfileUpdate, doctorProfileShow, allDoctor, deleteUser, specificDoctor} = require('../controller/user.js');
+const{Register, Login, signOut, profileUpdate, doctorProfileUpdate, doctorProfileShow, allDoctor, deleteUser, specificDoctor, stripePayment} = require('../controller/user.js');
 const { authUser } = require('../middleware/auth.js');
 const router = express.Router();
 
@@ -12,5 +12,6 @@ router.get('/doctor-profile-show', authUser, doctorProfileShow);
 router.get('/all-doctor',  allDoctor);
 router.get('/delete-user', authUser, deleteUser);
 router.get('/specific-doctor/:id', specificDoctor);
+router.post('/stripe-payment/:doctorId', authUser, stripePayment);
 
 module.exports = router;

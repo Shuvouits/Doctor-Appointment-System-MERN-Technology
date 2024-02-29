@@ -1,6 +1,8 @@
 const User = require("../model/user");
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const Stripe = require('stripe');
+const Booking = require('../model/booking')
 
 
 
@@ -69,6 +71,7 @@ exports.Login = async(req,res)=> {
         const token = jwt.sign({id: validUser._id}, process.env.SECRET_KEY)
 
         return res.status(200).json({
+            id: validUser._id,
             email: validUser.email,
             fullName: validUser.fullName,
             userType: validUser.userType,
@@ -235,3 +238,68 @@ exports.specificDoctor = async(req, res)=> {
         return(error)
     }
 }
+
+exports.stripePayment = async (req, res) => {
+    try {
+        
+        const doctor = await User.findById(req.params.doctorId);
+        const user = await User.findById(req.user.id);
+
+
+        const stripe = new Stripe(process.env.STRIPE_SECRET);
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            success_url: `${process.env.CLIENT_SITE_URL}/checkout-success`,
+            cancel_url: `${req.protocol}://${req.get('host')}/doctors/${doctor.id}`,
+            customer_email: user.email,
+            client_reference_id: req.params.doctorId,
+            mode : 'payment',
+
+            line_items:[
+                {
+                    price_data:{
+                        currency:'BDT',
+                        unit_amount: Math.round(doctor.ticket *100),
+                        product_data:{
+                            images:[doctor.avatar],
+                            name: doctor.fullName,
+                            description:doctor.email,
+                            
+                        },
+                        
+                    },
+
+                    quantity: 1
+                
+                }
+            ]   
+
+            
+        });
+
+        if (!session) {
+            return res.status(500).json({
+                success: false,
+                message: 'Failed to create Stripe session',
+            });
+        }
+
+        const booking = await new Booking({
+            doctor: doctor._id,
+            user: user._id,
+            ticketPrice: doctor.ticket,
+            session: session.id,
+        }).save();
+
+        return res.status(200).json({
+            booking,
+            session
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal Server Error',
+        });
+    }
+};

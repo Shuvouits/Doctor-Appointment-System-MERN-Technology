@@ -980,7 +980,10 @@ header.scrolled {
   background-color: blue;
   color: white;
   border: none;
-  padding: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   font-weight: bold;
   font-size: 15px;
   border-radius: 50px;
@@ -1342,16 +1345,28 @@ header.scrolled {
   padding-bottom: 30px;
 }
 
+.profile .left-part .profile-image{
+  width: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .profile .left-part .profile-image img {
-  width: 120px;
-  height: 120px;
-  border-radius: 60px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  
 }
 
 .profile .left-part .profile-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
   gap: 5px;
+  font-size: 20px;
 }
 
 .profile .left-part .card .card-footer {
@@ -1397,11 +1412,12 @@ header.scrolled {
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
+
 }
 
-.profile .card .card-header .booking {
-  height: 45px;
-  width: 17vw;
+.profile .right-part .card .card-header .profile-booking {
+  height: 45px !important;
+  width: 27vw !important;
   border: none;
   background: lightcyan;
   color: black;
@@ -1413,8 +1429,8 @@ header.scrolled {
 }
 
 .profile .card .card-header .profile-setting {
-  height: 45px;
-  width: 17vw;
+  height: 45px !important;
+  width: 27vw !important;
   border: none;
   background: lightcyan;
   color: black;
@@ -1504,7 +1520,9 @@ header.scrolled {
   padding: 30px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
-}
+}  
+
+
 
 @media only screen and (min-width: 1001px) {
   .doctor-profile .left-part {
@@ -1806,6 +1824,67 @@ header.scrolled {
 .doctor-profile .appointment .table tbody tr td {
   padding-left: 25px;
   padding-right: 25px;
+}
+
+
+.booking{
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.booking .left-side{
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid gainsboro;
+  padding: 20px;
+ 
+}
+
+.booking .left-side .avatar img{
+ width: 250px;
+ border-radius: 20px;
+  
+}
+
+.booking .left-side .name{
+  font-size: 25px;
+  font-weight: 600;
+
+}
+
+.booking .left-side .ticket{
+  font-size: 20px;
+  font-weight: 600;
+  color: blue;
+
+}
+
+.booking .left-side .speciality{
+  font-size: 15px;
+  line-height: 30px;
+  color: white;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background: red;
+  border-radius: 20px;
+  font-weight: bold;
+  
+
+}
+
+.booking .right-side{
+  width: 30vw;
 }
 
 /*---------*/
@@ -2292,7 +2371,7 @@ header.scrolled {
   }
 
   .doctor-info .right-side .ticket-card .feedback-btn {
-    padding: 10px;
+    padding: 15px;
   }
 
   .login {
@@ -2410,6 +2489,14 @@ header.scrolled {
   .profile .left-part .card .card-footer .delete {
     width: 30vw;
     height: 30px;
+    font-size: 12px;
+  }
+
+  .profile .left-part .profile-info {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 5px;
     font-size: 12px;
   }
 

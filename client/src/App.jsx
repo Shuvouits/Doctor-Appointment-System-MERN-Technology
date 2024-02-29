@@ -12,6 +12,8 @@ import Profile from "./pages/Profile"
 import Private from "./pages/Private"
 import { useSelector } from "react-redux"
 import DoctorProfile from "./pages/DoctorProfile"
+import Booking from "./pages/Booking"
+import Checkout from "./pages/Checkout"
 
 
 function App() {
@@ -43,6 +45,9 @@ function App() {
         <Route element={<Private />}>
           <Route path="/profile" element={user && user.userType === 'Doctor' ? <DoctorProfile /> :  <Profile />} />
         </Route>
+
+        <Route path="/booking-doctor/:id" element={<Booking />} />
+        <Route path="/checkout-success" element={<Checkout />} />
 
       </Routes>
       <Footer />
