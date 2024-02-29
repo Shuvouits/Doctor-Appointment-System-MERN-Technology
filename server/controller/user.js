@@ -311,6 +311,7 @@ exports.userRating = async (req, res) => {
         const doctorId = req.params.doctorId;
         const {ratingNumber, message} = req.body;
 
+
         const rating = await new Rating({
             ratingNumber,
             message,
@@ -320,6 +321,34 @@ exports.userRating = async (req, res) => {
 
         return res.status(200).json(rating)
 
+
+    } catch (error) {
+       return res.status(500).json(error)
+    }
+};  
+
+
+exports.userReview = async (req, res) => {
+    try {
+        
+        const doctorId = req.params.doctorId;
+        const reviews = await Rating.find({doctorId: doctorId});
+
+        const users = await Promise.all(reviews.map(async (review) => {
+            const user = await User.findById(review.userId);
+            return user;
+          }));
+
+          const responseData = reviews.map((review, index) => ({
+            avatar: users[index].avatar,
+            fullName: users[index].fullName,
+            message: review.message,
+            ratingNumber: review.ratingNumber,
+            time: review.createdAt
+        }));
+
+
+        return res.status(200).json(responseData)
 
     } catch (error) {
        return res.status(500).json(error)

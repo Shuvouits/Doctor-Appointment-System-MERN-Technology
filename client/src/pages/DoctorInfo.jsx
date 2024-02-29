@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
+import deleteIcon from "../images/1214428.png"
 
 
 
@@ -188,7 +189,9 @@ function DoctorInfo() {
 
       }
 
-     
+      allUserReview();
+
+
 
     } catch (error) {
       return (error)
@@ -196,6 +199,34 @@ function DoctorInfo() {
     }
 
   }
+
+  const [review, setReview] = useState('');
+  const allUserReview = async () => {
+
+    try {
+      const res = await fetch(`http://localhost:4000/user-review/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+
+      const data = await res.json();
+      setReview(data);
+
+    } catch (error) {
+      return (error)
+
+    }
+
+  };
+
+  useEffect(() => {
+    allUserReview();
+  }, []);
+
+  console.log(review);
 
 
 
@@ -310,39 +341,115 @@ function DoctorInfo() {
             {/* Content for the 'Feedback' tab */}
             <div className='feedback-part'>
               <h3>All Reviews <spna>(272)</spna></h3>
-              <div className='row'>
 
-                <div className='left-part'>
-                  <div className='image'>
-                    <img src={avatar} style={{ borderRadius: '70px', width: '80px', height: '80px' }} />
+
+              {review && review.length > 0 ? (
+                <>
+
+
+                  <div>
+                    {review.map((item, index) => (
+
+                      <div className='row'>
+                        <div className='left-part'>
+
+                          <div key={index} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '20px', marginBottom: '10px' }}>
+                            <div className='image'>
+                              <img src={item.avatar} style={{ borderRadius: '70px', width: '70px', height: '70px' }} />
+                            </div>
+                            <div className='info'>
+                              <div className='dname'>
+                                <span>{item.fullName}</span>
+                              </div>
+                              <div className='ddate'>
+                                <span>{format(item.time, 'MMMM-yyyy-dd')}</span>
+                              </div>
+                              <div className='d-feed'>
+                                <span style={{ fontWeight: "bold" }}>{item.message}</span>
+                              </div>
+                              
+                            </div>
+
+                           
+
+
+
+                          </div>
+                        </div>
+
+                        <div className='right-part'>
+                          {item.ratingNumber === 1 && (
+                            <FaStar />
+                          )}
+
+                          {item.ratingNumber === 2 && (
+                            <>
+                              <FaStar />
+                              <FaStar />
+                            </>
+
+                          )}
+
+                          {item.ratingNumber === 3 && (
+                            <>
+                              <FaStar />
+                              <FaStar />
+
+                              <FaStar />
+                            </>
+
+                          )}
+
+                          {item.ratingNumber === 4 && (
+                            <>
+                              <FaStar />
+                              <FaStar /> <FaStar /> <FaStar />
+                            </>
+
+                          )}
+
+                          {item.ratingNumber === 5 && (
+                            <>
+                              <FaStar />
+                              <FaStar /> <FaStar /> <FaStar /> <FaStar />
+                            </>
+
+                          )}
+
+                            
+
+
+
+                        </div>
+
+                             <div className='delete-part'>
+                                <img src={deleteIcon} width={20} height={20}/>
+                              </div>
+
+                      </div>
+
+
+
+
+
+
+                    ))}
                   </div>
 
-                  <div className='info'>
 
-                    <div className='dname'>
-                      <span>Name</span>
-                    </div>
-                    <div className='ddate'>
-                      <span>Feb 2 2024</span>
-                    </div>
-                    <div className='d-feed'>
-                      <span style={{ fontWeight: "bold" }}>Good service highly recommended</span>
-                    </div>
 
-                  </div>
+                </>
 
-                </div>
 
-                <div className='right-part'>
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
 
-                </div>
+              ) : (
+                <div>No Review Found</div>
+              )}
 
-              </div>
+
+
+
+
 
 
             </div>

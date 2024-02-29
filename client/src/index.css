@@ -945,6 +945,8 @@ header.scrolled {
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .feedback-part .row .left-part {
@@ -968,6 +970,10 @@ header.scrolled {
   justify-content: flex-end;
   color: blue;
   gap: 5px;
+}
+
+.feedback-part .row .delete-part{
+  cursor: pointer;
 }
 
 .feedback-part .left-part img {

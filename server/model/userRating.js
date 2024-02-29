@@ -16,6 +16,15 @@ const ratingSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    fullName: {
+        type: String,
+        required: true,
+    },
+
+    avatar: {
+        type: String,
+        required: true,
+    }
    
 }, { timestamps: true });
 
