@@ -1887,6 +1887,44 @@ header.scrolled {
   width: 30vw;
 }
 
+.checkout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.checkout .icon img{
+  width: 8vw;
+
+}
+
+.checkout .text-large{
+  font-size: 30px;
+}
+
+.checkout .text-secondary{
+  font-size: 20px;
+}
+
+.checkout .text-small{
+  font-weight: bold;
+  font-size: 19px;
+}
+.checkout .home{
+  width: 20vw;
+  height: 45px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  background: #007bff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
 /*---------*/
 
 
@@ -2691,6 +2729,24 @@ header.scrolled {
 
   .doctor-profile .appointment .table {
     font-size: 10px;
+  }
+
+  .checkout{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .checkout .icon img{
+    width: 30vw;
+  }
+
+  .checkout .text-secondary{
+    text-align: center;
+  }
+
+  .checkout .home{
+    width: 50vw;
+    margin-top: 5px;
   }
 
    

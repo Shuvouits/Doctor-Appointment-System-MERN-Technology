@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import doctor from "../images/doctor-img01.png";
+import avatar from "../images/147142.png";
 import { FaStar } from "react-icons/fa";
 import { Link, useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
-//import { loadStripe } from '@stripe/stripe-js';
+import Swal from 'sweetalert2';
 
 
 
@@ -17,15 +17,31 @@ function DoctorInfo() {
   const [activeTab, setActiveTab] = useState('about');
 
   const [feedback, setFeedback] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
+
+  const [formData, setFormData] = useState({
+    message: '',
+    ratingNumber: 0,
+  });
+
+
   const [userRating, setUserRating] = useState(0);
   const handleStarClick = (rating) => {
+
+    setFormData({
+      ...formData,
+      ratingNumber: rating,
+    });
+
+
     setUserRating(rating);
   };
+
 
   const findDoctor = async () => {
 
@@ -56,37 +72,133 @@ function DoctorInfo() {
     findDoctor();
   }, []);
 
-  
- const bookingHandler = async() => {
 
-  try {
-    const res = await fetch(`http://localhost:4000/stripe-payment/${id}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization' : `Bearer ${user.token}`
-      },
-    });
+  const bookingHandler = async () => {
+
+    try {
+      const res = await fetch(`http://localhost:4000/stripe-payment/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        },
+      });
 
 
-    const data = await res.json();
-    console.log(data);
+      const data = await res.json();
+      console.log(data);
 
-    if(data.session.url){
-      window.location.href = data.session.url
+      if (data.session.url) {
+        window.location.href = data.session.url
+      }
+
+    } catch (error) {
+      return (error)
+
     }
 
-  } catch (error) {
-    return (error)
+
 
   }
- 
 
 
- }
- 
- 
- 
+
+
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    })
+  }
+
+
+
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true)
+
+    if (!user) {
+
+
+
+      Swal.fire({
+        toast: true,
+        position: 'top-right',
+        animation: true,
+        text: 'You are not authorized, please login',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        customClass: {
+          container: 'custom-toast-container',
+          popup: 'custom-toast-popup',
+          title: 'custom-toast-title',
+          icon: 'custom-toast-icon',
+        },
+      });
+
+    }
+
+
+    try {
+
+      const res = await fetch(`http://localhost:4000/user-rating/${user.id}/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.status === 200) {
+
+        setFormData({
+          ...formData,
+          message: '',
+          ratingNumber: 0
+        });
+
+        Swal.fire({
+          toast: true,
+          position: 'top-right',
+          animation: true,
+          text: 'Thanks for your review',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          customClass: {
+            container: 'custom-toast-container',
+            popup: 'custom-toast-popup',
+            title: 'custom-toast-title',
+            icon: 'custom-toast-icon',
+          },
+        });
+
+        setFeedback(false)
+        setUserRating(0)
+
+      }
+
+     
+
+    } catch (error) {
+      return (error)
+      setLoading(false)
+    }
+
+  }
+
+
+
   return (
     <div className='doctor-info'>
       <div className='left-side'>
@@ -202,13 +314,13 @@ function DoctorInfo() {
 
                 <div className='left-part'>
                   <div className='image'>
-                    <img src={doctor} />
+                    <img src={avatar} style={{ borderRadius: '70px', width: '80px', height: '80px' }} />
                   </div>
 
                   <div className='info'>
 
                     <div className='dname'>
-                      <span>Shuvo Bhowmik</span>
+                      <span>Name</span>
                     </div>
                     <div className='ddate'>
                       <span>Feb 2 2024</span>
@@ -249,27 +361,41 @@ function DoctorInfo() {
 
             {feedback && (
 
-              <div className='user-feedback'>
-                <h3>How would rate your overall experience??</h3>
+              <form onSubmit={handleSubmit}>
 
-                <div className='user-rating-input'>
-                  <span>Give your Rating </span>
-                  <div className="star-rating">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <FaStar
-                        key={star}
-                        onClick={() => handleStarClick(star)}
-                        color={star <= userRating ? "#ffcc00" : "gainsboro"}
-                        style={{ cursor: "pointer", fontSize: "24px" }}
-                      />
-                    ))}
+                <div className='user-feedback'>
+                  <h3>How would rate your overall experience??</h3>
+
+                  <div className='user-rating-input'>
+
+                    <span>Give your Rating </span>
+                    <div className="star-rating">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <FaStar
+                          key={star}
+                          onClick={() => handleStarClick(star)}
+
+                          id='ratingNumber'
+                          onChange={handleChange}
+
+                          color={star <= userRating ? "#ffcc00" : "gainsboro"}
+                          style={{ cursor: "pointer", fontSize: "24px" }}
+                        />
+                      ))}
+                    </div>
                   </div>
+                  <br></br>
+
+                  <textarea id='message' onChange={handleChange} placeholder='Write your message' style={{ fontSize: "15px", border: "1px solid gainsboro", padding: "15px", height: "20vh", width: "100%" }}>
+
+                  </textarea>
+
                 </div>
-                <br></br>
+                <button type='submit' style={{ border: 'none', width: '100%', height: '45px', cursor: 'pointer', fontSize: '15px', background: 'red', marginTop: '20px', color: 'white', fontWeight: 'bold', borderRadius: '20px' }}>Submit</button>
 
-                <textarea placeholder='Write your message' style={{ fontSize: "15px", border: "1px solid gainsboro", padding: "15px", height: "20vh", width: "100%" }}></textarea>
+              </form>
 
-              </div>
+
 
             )}
 
@@ -334,13 +460,13 @@ function DoctorInfo() {
                 )}
               </div>
             </div>
-            
 
-           
 
-              <button className='feedback-btn' onClick={bookingHandler}>Book Appoint</button>
 
-           
+
+            <button className='feedback-btn' onClick={bookingHandler}>Book Appoint</button>
+
+
 
           </div>
 

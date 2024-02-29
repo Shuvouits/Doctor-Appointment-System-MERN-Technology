@@ -2,7 +2,8 @@ const User = require("../model/user");
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Stripe = require('stripe');
-const Booking = require('../model/booking')
+const Booking = require('../model/booking');
+const Rating = require('../model/userRating');
 
 
 
@@ -302,4 +303,26 @@ exports.stripePayment = async (req, res) => {
             message: 'Internal Server Error',
         });
     }
+};  
+
+exports.userRating = async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const doctorId = req.params.doctorId;
+        const {ratingNumber, message} = req.body;
+
+        const rating = await new Rating({
+            ratingNumber,
+            message,
+            userId,
+            doctorId
+        }).save();
+
+        return res.status(200).json(rating)
+
+
+    } catch (error) {
+       return res.status(500).json(error)
+    }
 };
+
