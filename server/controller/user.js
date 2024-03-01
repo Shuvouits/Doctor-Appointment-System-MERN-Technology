@@ -348,6 +348,7 @@ exports.userReview = async (req, res) => {
           const responseData = reviews.map((review, index) => ({
             avatar: users[index].avatar,
             fullName: users[index].fullName,
+            id: users[index]._id,
             message: review.message,
             ratingNumber: review.ratingNumber,
             time: review.createdAt

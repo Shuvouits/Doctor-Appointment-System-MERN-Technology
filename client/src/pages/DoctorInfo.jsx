@@ -397,6 +397,7 @@ function DoctorInfo() {
                             <div className='info'>
                               <div className='dname' style={{fontWeight: 'bold'}}>
                                 <span>{item.fullName}</span>
+                                
                               </div>
                               <div className='ddate'>
                                 <span>{format(item.time, 'MMMM-yyyy-dd')}</span>
@@ -459,7 +460,7 @@ function DoctorInfo() {
 
                         </div>
 
-                        {user && (
+                        {user && user.id === item.id && (
 
                           <div className='delete-part'>
                             <img src={deleteIcon} width={20} height={20} onClick={deleteRating} />
