@@ -15,16 +15,9 @@ const ratingSchema = new mongoose.Schema({
     doctorId: {
         type: String,
         required: true,
-    },
-    fullName: {
-        type: String,
-        required: true,
-    },
-
-    avatar: {
-        type: String,
-        required: true,
     }
+
+   
    
 }, { timestamps: true });
 

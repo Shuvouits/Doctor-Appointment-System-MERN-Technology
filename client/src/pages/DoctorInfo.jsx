@@ -226,7 +226,42 @@ function DoctorInfo() {
     allUserReview();
   }, []);
 
-  console.log(review);
+  
+  const deleteRating = async() =>{
+   
+      try{
+
+        const result = await Swal.fire({
+          title: 'Delete your review?',
+          text: 'You won\'t be able to revert this!',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, delete it!',
+        });
+
+        if (result.isConfirmed) {
+          const res = await fetch(`http://localhost:4000/delete-review/${id}`, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${user.token}`
+            },
+          });
+    
+          const data = await res.json();
+    
+          if (res.status === 200) {
+            allUserReview();
+          }
+        }
+
+
+      }catch(error){
+        return (error)
+      }
+  }
 
 
 
@@ -367,10 +402,10 @@ function DoctorInfo() {
                               <div className='d-feed'>
                                 <span style={{ fontWeight: "bold" }}>{item.message}</span>
                               </div>
-                              
+
                             </div>
 
-                           
+
 
 
 
@@ -416,15 +451,21 @@ function DoctorInfo() {
 
                           )}
 
-                            
+
 
 
 
                         </div>
 
-                             <div className='delete-part'>
-                                <img src={deleteIcon} width={20} height={20}/>
-                              </div>
+                        {user && (
+
+                          <div className='delete-part'>
+                            <img src={deleteIcon} width={20} height={20} onClick={deleteRating} />
+                          </div>
+
+                        )}
+
+
 
                       </div>
 

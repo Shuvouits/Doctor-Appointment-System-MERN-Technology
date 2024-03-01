@@ -307,7 +307,10 @@ exports.stripePayment = async (req, res) => {
 
 exports.userRating = async (req, res) => {
     try {
+
+        
         const userId = req.params.userId;
+        
         const doctorId = req.params.doctorId;
         const {ratingNumber, message} = req.body;
 
@@ -330,8 +333,11 @@ exports.userRating = async (req, res) => {
 
 exports.userReview = async (req, res) => {
     try {
+
+        
         
         const doctorId = req.params.doctorId;
+        
         const reviews = await Rating.find({doctorId: doctorId});
 
         const users = await Promise.all(reviews.map(async (review) => {
@@ -349,6 +355,29 @@ exports.userReview = async (req, res) => {
 
 
         return res.status(200).json(responseData)
+
+    } catch (error) {
+       return res.status(500).json(error)
+    }
+}; 
+
+
+exports.deleteReview = async (req, res) => {
+    try {
+        
+       const userId = req.user.id;
+       const doctorId = req.params.doctorId
+       const deleteReview = await Rating.findOneAndDelete({userId: userId, doctorId: doctorId});
+
+       if(!deleteReview){
+         return res.status(401).json({
+            message: "Data not found"
+        })
+       }
+
+       res.status(200).json({
+        message: 'Review deleted successfully'
+       })
 
     } catch (error) {
        return res.status(500).json(error)
