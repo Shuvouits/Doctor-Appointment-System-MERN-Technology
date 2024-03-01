@@ -6,47 +6,23 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import aboutImg from "../images/about.png";
 import { FaStar } from "react-icons/fa";
+import { format } from 'date-fns';
 
-const testimonialData = [
-  {
-    id: 1,
-    name: 'John Doe',
-    role: 'Web Developer',
-    comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam, est ut aliquam iaculis, metus quam ullamcorper odio, a volutpat felis libero at justo.',
-    image: aboutImg,
-    rating: 1,
-  },
-  {
-    id: 2,
-    name: 'Jane Smith',
-    role: 'UX Designer',
-    comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam, est ut aliquam iaculis, metus quam ullamcorper odio, a volutpat felis libero at justo.',
-    image: aboutImg,
-    rating: 5,
-  },
-  {
-    id: 3,
-    name: 'Jane Shuvo',
-    role: 'UX Designer',
-    comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam, est ut aliquam iaculis, metus quam ullamcorper odio, a volutpat felis libero at justo.',
-    image: aboutImg,
-    rating: 3,
-  },
 
-  {
-    id: 4,
-    name: 'Jane Shuvo uits',
-    role: 'UX Designer',
-    comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam aliquam, est ut aliquam iaculis, metus quam ullamcorper odio, a volutpat felis libero at justo.',
-    image: aboutImg,
-    rating: 3,
-  },
 
-  // Add more testimonial data as needed
-];
-
-const TestimonialCarousel = () => {
+const TestimonialCarousel = ({ review }) => {
   const [selectedItem, setSelectedItem] = useState(0);
+
+  const testimonialData = review.map((item, index) => ({
+    id: index + 1, 
+    name: item.fullName,
+    email: item.email,
+    time: item.time,
+    comment: item.message, 
+    image: item.avatar, 
+    rating: item.ratingNumber,
+    
+  }));
 
   const settings = {
     dots: true,
@@ -61,15 +37,14 @@ const TestimonialCarousel = () => {
   };
 
 
-  // Media query for screens with a maximum width of 1000px
+
   const mediaQuery = window.matchMedia('(max-width: 1000px)');
 
-  // Update settings for screens with a maximum width of 1000px
   if (mediaQuery.matches) {
     settings.slidesToShow = 1;
   }
 
-  
+
 
   return (
     <div className='testmonial'>
@@ -88,6 +63,7 @@ const TestimonialCarousel = () => {
                 </div>
                 <div className='ninfo'>
                   <span className="name">{testimonial.name}</span>
+                  <span>{format(testimonial.time, 'dd-MMMM-yyyy')}</span>
                   <span className="rating">
                     {Array.from({ length: 5 }, (_, i) => (
                       <FaStar key={i} className={i < testimonial.rating ? 'icon-test filled' : 'icon-test empty'} />
@@ -100,6 +76,8 @@ const TestimonialCarousel = () => {
               </div>
             </div>
           ))}
+
+
         </Slider>
       </div>
     </div>

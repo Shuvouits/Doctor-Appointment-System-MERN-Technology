@@ -232,7 +232,7 @@ function Register() {
 
                                 <div className='upload-img'>
                                     {imagePreview ? (
-                                        <img src={imagePreview} alt="Uploaded Preview" />
+                                        <img src={imagePreview} alt="Uploaded Preview"  />
                                     ) : (
                                         <img src={doctor} alt="Default Doctor Image" />
                                     )}
@@ -247,7 +247,7 @@ function Register() {
                                 {
                                     imageLoading && (
 
-                                        <span>{filePerc}% </span>
+                                        <span style={{color: 'red', fontWeight: 'bold'}}>{filePerc}% </span>
 
                                     )
                                 }

@@ -950,7 +950,7 @@ header.scrolled {
 }
 
 .feedback-part .row .left-part {
-  width: 50%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -964,7 +964,7 @@ header.scrolled {
 }
 
 .feedback-part .row .right-part {
-  width: 50%;
+  width: 20%;
   display: flex;
   align-items: cenetr;
   justify-content: flex-end;
@@ -1206,7 +1206,8 @@ header.scrolled {
 .register .card-body .form .col img {
   border-radius: 50px;
   width: 80px;
-  border: 5px solid blue;
+  height: 80px;
+  border: 3px solid gainsboro;
 
 }
 
@@ -2362,11 +2363,13 @@ header.scrolled {
   .doctor-info .left-side .feedback-part .row {
     display: flex;
     flex-direction: column;
+    
   }
 
   .doctor-info .left-side .feedback-part .row .left-part {
     flex-direction: column;
     width: 100%;
+    
 
   }
 

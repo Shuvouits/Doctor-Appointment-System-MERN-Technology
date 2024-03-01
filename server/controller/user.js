@@ -384,3 +384,34 @@ exports.deleteReview = async (req, res) => {
     }
 };
 
+exports.allReview = async (req,res) => {
+    try{
+
+        const reviews = await Rating.find({});
+
+       
+
+        const users = await Promise.all(reviews.map(async (review) => {
+            const user = await User.findById(review.userId);
+            return user;
+        }));
+
+    
+
+          const responseData = reviews.map((review, index) => ({
+            avatar: users[index].avatar,
+            fullName: users[index].fullName,
+            email: users[index].email,
+            message: review.message,
+            ratingNumber: review.ratingNumber,
+            time: review.createdAt,
+        }));
+
+        return res.status(200).json(responseData)
+
+
+    }catch(error){
+        return(error)
+    }
+}
+

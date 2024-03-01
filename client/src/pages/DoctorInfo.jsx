@@ -200,7 +200,8 @@ function DoctorInfo() {
 
   }
 
-  const [review, setReview] = useState('');
+  const [review, setReview] = useState({});
+
   const allUserReview = async () => {
 
     try {
@@ -375,11 +376,12 @@ function DoctorInfo() {
           <div className="tab-content">
             {/* Content for the 'Feedback' tab */}
             <div className='feedback-part'>
-              <h3>All Reviews <spna>(272)</spna></h3>
+              
 
 
               {review && review.length > 0 ? (
                 <>
+                <h3>All Reviews <spna>({review.length})</spna></h3>
 
 
                   <div>
@@ -393,14 +395,14 @@ function DoctorInfo() {
                               <img src={item.avatar} style={{ borderRadius: '70px', width: '70px', height: '70px' }} />
                             </div>
                             <div className='info'>
-                              <div className='dname'>
+                              <div className='dname' style={{fontWeight: 'bold'}}>
                                 <span>{item.fullName}</span>
                               </div>
                               <div className='ddate'>
                                 <span>{format(item.time, 'MMMM-yyyy-dd')}</span>
                               </div>
                               <div className='d-feed'>
-                                <span style={{ fontWeight: "bold" }}>{item.message}</span>
+                                <span  style={{fontSize: '16px'}}>{item.message}</span>
                               </div>
 
                             </div>
