@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 import { app, storage } from '../firebase.js'
 import { BeatLoader } from 'react-spinners';
+import deleteIcon from "../images/1214428.png"
 
 function Profile() {
 
@@ -222,6 +223,80 @@ function Profile() {
     }
   };
 
+  const [bookingData, setBookingData] = useState({})
+
+  const doctorBook = async () => {
+
+    try {
+      const res = await fetch(`http://localhost:4000/doctor-booking`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        },
+      });
+
+
+      const data = await res.json();
+      setBookingData(data);
+
+    } catch (error) {
+      return (error)
+
+    }
+
+  };
+
+  useEffect(() => {
+    doctorBook();
+  }, []); 
+  
+  //Delete Booking Doctor
+
+  const handleClick = async(doctorId) => {
+    
+
+    try{
+
+      const result = await Swal.fire({
+        title: 'Delete your booking Doctor?',
+        text: 'You won\'t be able to revert this!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+      });
+
+      if (result.isConfirmed) {
+        const res = await fetch(`http://localhost:4000/delete-booking-doctor/${doctorId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`
+          },
+        });
+  
+        const data = await res.json();
+  
+        if (res.status === 200) {
+          doctorBook();
+        }
+      }
+
+
+    }catch(error){
+      return (error)
+    }
+
+
+  }
+
+
+
+
+
+
   return (
     <div className='profile-container'>
 
@@ -245,8 +320,8 @@ function Profile() {
               </div>
               <div className='profile-info'>
                 <span style={{ textTransform: 'capitalize' }}> Name : {user.fullName}</span>
-                <span style={{ textTransform: 'capitalize'}}>Email : {user.email}</span>
-                <span style={{ textTransform: 'capitalize'}}>Blood Group: {user.blood}</span>
+                <span style={{ textTransform: 'capitalize' }}>Email : {user.email}</span>
+                <span style={{ textTransform: 'capitalize' }}>Blood Group: {user.blood}</span>
               </div>
             </div>
             <div className='card-footer'>
@@ -267,7 +342,46 @@ function Profile() {
               {booking && (
 
                 <div className='booking-part'>
-                  <p>No Doctor booking yet</p>
+                  {
+                    bookingData && bookingData.length > 0 ? (
+                      <>
+
+                        {bookingData.map((item, index) => (
+                          <>
+                            <div className='booking-card'>
+                              <div className='booking-data'>
+
+                                <span><img className='doctor-avatar' src={item.avatar}  /></span>
+                                <span>{item.fullName}</span>
+                                <span>{item.email}</span>
+                                <span>{item.speciality}</span>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '60px', justifyContent: 'space-between'}}>
+                                   <span className='ticket'>Ticket: {item.ticket}TK</span>
+                                  
+                                   <img src={deleteIcon}  width={20} height={20} style={{cursor: 'pointer'}}  onClick={()=>handleClick(item.id)} />
+                                </div>
+                                
+                                <span>
+                                  <Link to={`/${item.fullNme}/${item.id}`}>
+                                    <button className='profile-btn'>Visit Profile</button>
+                                  </Link>
+                                </span>
+
+                              </div>
+
+
+                            </div>
+
+                          </>
+                        ))}
+
+
+                      </>
+                    ) : (
+                      <div>No Data Found</div>
+                    )
+                  }
+
                 </div>
 
               )}
@@ -329,7 +443,7 @@ function Profile() {
                   </div>
                   <button type='submit' style={{ background: loading ? 'red' : '', cursor: loading ? 'not-allowed' : 'pointer' }} className='submit-btn'>
                     {loading ? "...Profile Updated" : "Submit"}
-                    
+
                   </button>
                 </form>
 

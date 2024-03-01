@@ -414,5 +414,57 @@ exports.allReview = async (req,res) => {
     }catch(error){
         return(error)
     }
+}  
+
+exports.doctorBooking = async (req, res) => {
+    try{
+        const userId = req.user.id;
+        const data = await Booking.find({user: userId});
+        
+        const doctors = await Promise.all(data.map(async (item) => {
+            const doctor = await User.findById(item.doctor);
+            return doctor;
+        }));
+
+    
+
+          const responseData = data.map((item, index) => ({
+            avatar: doctors[index].avatar,
+            fullName: doctors[index].fullName,
+            email: doctors[index].email,
+            id: doctors[index]._id,
+            speciality: doctors[index].speciality,
+            ticket: item.ticketPrice
+        }));
+
+
+        return res.status(200).json(responseData)
+
+
+    }catch(error){
+        return (error)
+    }
+}
+
+exports. deleteBookingDoctor = async(req, res)=> {
+    try{
+        const userId = req.user.id;
+        const doctorId = req.params.doctorId;
+
+        const data = await Booking.findOneAndDelete({user: userId, doctor: doctorId})
+
+        if(!data){
+            return res.status(401).json({
+                message: 'No data found'
+            })
+        }
+
+        return res.status(200).json({
+            message: 'Data deleted successfully'
+        })
+
+    }catch(error){
+        return (error)
+    }
 }
 
