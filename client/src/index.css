@@ -1825,6 +1825,7 @@ header.scrolled {
   
 }
 
+/*  
 .doctor-profile .appointment .table {
 
   display: flex;
@@ -1839,9 +1840,9 @@ header.scrolled {
 .doctor-profile .appointment .table thead {
   background: #007bff;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 50px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
 
 
 }
@@ -1858,15 +1859,15 @@ header.scrolled {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
 
 }
 
 .doctor-profile .appointment .table tbody tr {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 50px;
+  justify-content: flex-start;
+  padding: 10px;
   border-bottom: 1px solid gainsboro;
   width:100%;
 
@@ -1883,6 +1884,37 @@ header.scrolled {
   padding-right: 25px;
 }
 
+
+*/
+
+.doctor-profile .appointment{
+  
+
+}
+
+.appointment .table{
+  width: 60vw;
+  
+  flex-wrap: wrap;
+}
+
+.appointment .table thead{
+  background: #007bff !important;
+  color: white;
+  border-collapse: collapse;
+}
+
+.appointment .table th, td{
+  
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+  
+}
+
+.appointment .table td{
+  border-bottom: 1px solid gainsboro;
+}
 
 .booking{
   padding-left: 150px;

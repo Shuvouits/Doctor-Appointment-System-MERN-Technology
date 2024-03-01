@@ -79,6 +79,68 @@ function Profile() {
 
   }
 
+  const handleDelete = async () => {
+
+    const result = await Swal.fire({
+      title: 'Are you sure delete your account?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    });
+
+    if (result.isConfirmed) {
+
+      try {
+        const res = await fetch(`http://localhost:4000/delete-user`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${user.token}`
+          },
+        });
+
+        if(res.status === 200){
+          dispatch({ type: "LOGOUT", payload: null });
+          Cookies.set("user", null);
+  
+          Swal.fire({
+            toast: true,
+            position: 'top-right',
+            animation: true,
+            text: `${user.fullName}, Your account has deleted`,
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            customClass: {
+              container: 'custom-toast-container',
+              popup: 'custom-toast-popup',
+              title: 'custom-toast-title',
+              icon: 'custom-toast-icon',
+            },
+          });
+  
+  
+          navigate('/login')
+
+        }
+
+
+      } catch (error) {
+        return (error)
+
+      }
+
+    }
+
+
+
+
+  }
+
   const [formData, setFormData] = useState({
     fullName: user.fullName || '',
     email: user.email || '',
@@ -249,14 +311,14 @@ function Profile() {
 
   useEffect(() => {
     doctorBook();
-  }, []); 
-  
+  }, []);
+
   //Delete Booking Doctor
 
-  const handleClick = async(doctorId) => {
-    
+  const handleClick = async (doctorId) => {
 
-    try{
+
+    try {
 
       const result = await Swal.fire({
         title: 'Delete your booking Doctor?',
@@ -276,16 +338,16 @@ function Profile() {
             'Authorization': `Bearer ${user.token}`
           },
         });
-  
+
         const data = await res.json();
-  
+
         if (res.status === 200) {
           doctorBook();
         }
       }
 
 
-    }catch(error){
+    } catch (error) {
       return (error)
     }
 
@@ -326,7 +388,7 @@ function Profile() {
             </div>
             <div className='card-footer'>
               <button className='logout' onClick={handleLogout}>Logout</button>
-              <button className='delete'>Delete Account</button>
+              <button className='delete' onClick={handleDelete}>Delete Account</button>
             </div>
           </div>
         </div>
@@ -351,16 +413,16 @@ function Profile() {
                             <div className='booking-card'>
                               <div className='booking-data'>
 
-                                <span><img className='doctor-avatar' src={item.avatar}  /></span>
+                                <span><img className='doctor-avatar' src={item.avatar} /></span>
                                 <span>{item.fullName}</span>
                                 <span>{item.email}</span>
                                 <span>{item.speciality}</span>
-                                <div style={{display: 'flex', alignItems: 'center', gap: '60px', justifyContent: 'space-between'}}>
-                                   <span className='ticket'>Ticket: {item.ticket}TK</span>
-                                  
-                                   <img src={deleteIcon}  width={20} height={20} style={{cursor: 'pointer'}}  onClick={()=>handleClick(item.id)} />
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '60px', justifyContent: 'space-between' }}>
+                                  <span className='ticket'>Ticket: {item.ticket}TK</span>
+
+                                  <img src={deleteIcon} width={20} height={20} style={{ cursor: 'pointer' }} onClick={() => handleClick(item.id)} />
                                 </div>
-                                
+
                                 <span>
                                   <Link to={`/${item.fullNme}/${item.id}`}>
                                     <button className='profile-btn'>Visit Profile</button>

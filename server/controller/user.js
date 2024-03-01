@@ -214,7 +214,7 @@ exports.deleteUser = async(req, res) => {
         const user = await User.findByIdAndDelete(userId);
        
         if(!user){
-            return res.status(404).json({
+            return res.status(401).json({
                 message: 'User not found'
             })
 
@@ -462,6 +462,34 @@ exports. deleteBookingDoctor = async(req, res)=> {
         return res.status(200).json({
             message: 'Data deleted successfully'
         })
+
+    }catch(error){
+        return (error)
+    }
+}  
+
+exports. patientList = async(req, res)=> {
+
+    try{
+        const doctorId = req.user.id;
+        const patientList = await Booking.find({doctor: doctorId});
+
+        const users = await Promise.all(patientList.map(async (item) => {
+            const user = await User.findById(item.user);
+            return user;
+        })); 
+
+        const responseData = patientList.map((item, index) => ({
+            avatar: users[index].avatar,
+            fullName: users[index].fullName,
+            email: users[index].email,
+            ticket: item.ticketPrice,
+            time: item.createdAt,
+            gender: users[index].gender,
+        }));
+
+
+        return res.status(200).json(responseData);
 
     }catch(error){
         return (error)

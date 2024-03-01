@@ -262,9 +262,9 @@ function DoctorInfo() {
       }catch(error){
         return (error)
       }
-  }
+  }  
 
-
+  
 
   return (
     <div className='doctor-info'>

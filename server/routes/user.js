@@ -1,5 +1,5 @@
 const express = require('express')
-const{Register, Login, signOut, profileUpdate, doctorProfileUpdate,doctorProfileShow, allDoctor, deleteUser, specificDoctor, stripePayment, userRating, userReview, deleteReview, allReview, doctorBooking,  deleteBookingDoctor} = require('../controller/user.js');
+const{Register, Login, signOut, profileUpdate, doctorProfileUpdate,doctorProfileShow, allDoctor, deleteUser, specificDoctor, stripePayment, userRating, userReview, deleteReview, allReview, doctorBooking,  deleteBookingDoctor, patientList} = require('../controller/user.js');
 
 const { authUser } = require('../middleware/auth.js');
 const router = express.Router();
@@ -19,6 +19,7 @@ router.get('/user-review/:doctorId', userReview);
 router.get('/delete-review/:doctorId', authUser, deleteReview);
 router.get('/all-review', allReview);
 router.get('/doctor-booking', authUser, doctorBooking);
-router.get('/delete-booking-doctor/:doctorId', authUser, deleteBookingDoctor)
+router.get('/delete-booking-doctor/:doctorId', authUser, deleteBookingDoctor);
+router.get('/patient-list', authUser, patientList);
 
 module.exports = router;

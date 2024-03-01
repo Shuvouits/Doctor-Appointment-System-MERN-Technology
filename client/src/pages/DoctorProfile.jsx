@@ -60,7 +60,7 @@ function DoctorProfile() {
         setOverView(false)
     }
 
-    
+
 
 
 
@@ -226,7 +226,7 @@ function DoctorProfile() {
 
 
     //Account delete functionality
-    const handleDelete = async() =>{
+    const handleDelete = async () => {
         try {
 
             const res = await fetch('http://localhost:4000/delete-user', {
@@ -318,6 +318,7 @@ function DoctorProfile() {
     }
 
 
+
     const fetchDoctorProfile = async () => {
 
         try {
@@ -339,8 +340,7 @@ function DoctorProfile() {
                     ...data
                 }));
 
-                //dispatch({ type: "DOCTORPROFILEUPDATE", payload: data });
-                //Cookies.set("doctorProfile", JSON.stringify(data));
+
 
                 setQualifications(data.qualifications || []);
                 setExperience(data.experience || []);
@@ -482,12 +482,36 @@ function DoctorProfile() {
 
     };
 
-    //End
+    //End   
 
-   
+    const [patientList, setPatientList] = useState([]);
+
+    const patient = async () => {
+
+        try {
+            const res = await fetch(`http://localhost:4000/patient-list`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                },
+            });
+
+            const data = await res.json();
+            setPatientList(data);
+
+        } catch (error) {
+            return (error)
+
+        }
+
+    };
+
+    useEffect(() => {
+        patient();
+    }, []);
 
 
-    console.log(qualifications);
 
 
 
@@ -591,7 +615,7 @@ function DoctorProfile() {
                                                     <span>
                                                         {item.edegree}{' '}
                                                         <span style={{ color: 'blue', fontWeight: 'bold' }}>
-                                                            ({format(item.estartDate, 'yyyy-MM-dd')} - {format(item.eendDate, 'yyyy-MM-dd')})  
+                                                            ({format(item.estartDate, 'yyyy-MM-dd')} - {format(item.eendDate, 'yyyy-MM-dd')})
                                                         </span>
                                                     </span>
                                                 </div>
@@ -655,6 +679,7 @@ function DoctorProfile() {
                         <h2>Patient Appoint History</h2>
                         <table className='table'>
                             <thead>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Gender</th>
                                 <th>Payment</th>
@@ -663,21 +688,21 @@ function DoctorProfile() {
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Gender</td>
-                                    <td>Payment</td>
-                                    <td>Price</td>
-                                    <td>Booked On</td>
-                                </tr>
+                                {patientList.map((item, index) => (
 
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Gender</td>
-                                    <td>Payment</td>
-                                    <td>Price</td>
-                                    <td>Booked On</td>
-                                </tr>
+                                    <tr>
+                                        <td><img src={item.avatar} width={50} height={50} style={{borderRadius: '100%'}} /></td>
+                                        <td>{item.fullName}</td>
+                                        <td>{item.gender}</td>
+                                        <td>Paied</td>
+                                        <td>{item.ticket} Tk</td>
+                                        <td>{item.time}</td>
+                                    </tr>
+
+                                ))}
+
+
+
 
                             </tbody>
 
@@ -1045,7 +1070,7 @@ function DoctorProfile() {
                                 )
                             }
 
-                            <button type='submit'  className='submit-btn' style={{ background: loading || imageLoading ? 'red' : '', cursor: loading || imageLoading ? 'not-allowed' : 'pointer' }}>
+                            <button type='submit' className='submit-btn' style={{ background: loading || imageLoading ? 'red' : '', cursor: loading || imageLoading ? 'not-allowed' : 'pointer' }}>
                                 {loading ? 'Profile Updated....' : 'Update'}
 
                             </button>
