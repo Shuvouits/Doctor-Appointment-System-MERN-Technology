@@ -11,8 +11,10 @@ export default function Hero() {
             <h2>We help Patients <span className="text-primary">live a healthy</span>, longer life</h2>
           </div>
           <div className='description'>
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-              as opposed to using 'Content here, content here',</p>
+            <p>
+            Empowering individuals on their journey to wellness, our mission is to assist patients in achieving and maintaining a healthy and fulfilling life. With a commitment to longevity and well-being, we provide comprehensive support, personalized care, and valuable resources 
+            to help patients lead healthier lives and embrace the joy of living to the fullest
+            </p>
 
           </div>
           <div className='request-btn'>

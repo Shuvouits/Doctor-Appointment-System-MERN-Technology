@@ -38,7 +38,7 @@ export default function Virtual() {
 
             <div style={{display: "flex", alignItems: 'center', justifyContent:'space-between', gap:"10px"}}>
             <div className='round3'>
-              <img src={virtual} width={40} height={40} style={{borderRadius: '60px'}} />
+              <img src={virtual} width={40} height={40} style={{borderRadius: '100%'}} />
               <p>Jhon Doe</p>
             </div>
             <div className='round2'><span className='way'>Consultation</span></div>

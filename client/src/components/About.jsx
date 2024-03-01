@@ -35,7 +35,7 @@ export default function About() {
             </div>
 
             <div className='aboutDesc'>
-                <h3 className='title'>Proud to be one of the nations best</h3>
+                <h3 className='title'>Proud To Be <span className='text-primary'>One of The Nations</span> Best</h3>
                 <p className='description'>
                 "Dr. Samantha Patel, a distinguished neurology specialist, takes immense pride in being 
                 recognized as one of the nation's best doctors. With a passion for advancing 

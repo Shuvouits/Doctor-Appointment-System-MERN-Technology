@@ -4,6 +4,7 @@ import { CiYoutube } from "react-icons/ci";
 import { FaGithub } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import { CiFacebook } from "react-icons/ci";
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -24,10 +25,10 @@ export default function Footer() {
       </div>
       <div className='section-2'>
         <h2>Quick Links</h2>
-        <span>Home</span>
-        <span>About Us</span>
-        <span>Services</span>
-        <span>Blog</span>
+        <Link to={'/'} className='customLink'><span>Home</span></Link>
+        <Link to={'/about'} className='customLink'><span>About Us</span></Link>
+        <Link to={'/services'} className='customLink'><span>Services</span></Link>
+        <Link to={'/blog'} className='customLink'><span>Blog</span></Link>
       </div>
       <div className='section-3'>
         <h2>I Want To</h2>

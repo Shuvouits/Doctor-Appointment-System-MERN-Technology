@@ -2,7 +2,7 @@ import Footer from "./components/Footer"
 import Header from "./components/Header"
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom"
 import Home from "./pages/Home"
-import Services from "./pages/Services"
+
 import FindDoctor from "./pages/FindDoctor"
 import DoctorInfo from "./pages/DoctorInfo"
 import Login from "./pages/Login"
@@ -14,6 +14,7 @@ import { useSelector } from "react-redux"
 import DoctorProfile from "./pages/DoctorProfile"
 import Booking from "./pages/Booking"
 import Checkout from "./pages/Checkout"
+import ServicesPage from "./pages/ServicesPage"
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="/find-doctor" element={<FindDoctor />} />
         <Route path="/:doctor-name/:id" element={<DoctorInfo />} />
 

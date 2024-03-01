@@ -1,6 +1,31 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Contact() {
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        Swal.fire({
+            toast: true,
+            position: 'top-right',
+            animation: true,
+            text: 'Thanks for your valuable information we will contact soon',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            customClass: {
+                container: 'custom-toast-container',
+                popup: 'custom-toast-popup',
+                title: 'custom-toast-title',
+                icon: 'custom-toast-icon',
+            },
+        });
+
+        
+    }
     return (
         <>
 
@@ -20,7 +45,7 @@ function Contact() {
 
                             <div className='form-group'>
                                 <label>Subject</label>
-                                <input type='email' placeholder='Enter your mail' className='form-control' />
+                                <input type='text' placeholder='Enter your mail' className='form-control' />
                             </div>
 
                             <div className='form-group'>
@@ -28,7 +53,7 @@ function Contact() {
                                 <textarea style={{ height: "100px" }} className='form-control' />
                             </div>
 
-                            <button type='submit' className='contact-us'>Submit</button>
+                            <button type='submit' className='contact-us' onClick={handleClick}>Submit</button>
 
                         </form>
 
