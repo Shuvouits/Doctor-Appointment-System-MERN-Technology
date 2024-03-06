@@ -673,7 +673,22 @@ header.scrolled {
 .testimonial-item {
   padding-top: 25px;
   padding-bottom: 25px;
+ 
+ 
 
+}
+
+.testmonial .testimonial-carousel-container .slick-slide{
+ 
+  
+
+
+}
+
+.testmonial .testimonial-carousel-container .row .testimonial-item{
+ border: 1px solid gainsboro;
+  width: 25vw;
+  border-radius: 10px;
 }
 
 .testimonial-item .first {
@@ -2889,7 +2904,16 @@ header.scrolled {
     border-radius: 100%;
    
   
-  }
+  }  
+
+  .testmonial .testimonial-carousel-container .row .testimonial-item{
+   
+     width: 85vw;
+     padding: 10px;
+     border: none;
+    
+   }
+   
 
    
 
