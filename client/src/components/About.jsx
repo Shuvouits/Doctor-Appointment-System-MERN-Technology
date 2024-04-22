@@ -49,7 +49,7 @@ export default function About() {
                    
                 </p>
                 <div className='learnMore'>
-                    <Link to={'http://localhost:5173/Dr.%20Samantha%20Patel/65c7b7eac0eeb49f5e22a763'}>
+                    <Link to={'https://doctor.shuvobhowmik.xyz/Dr.%20Samantha%20Patel/65c7b7eac0eeb49f5e22a763'}>
                     <button className='loginBtn'>Book Now</button>
                     </Link>
                     
