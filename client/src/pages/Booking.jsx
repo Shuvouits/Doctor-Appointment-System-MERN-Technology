@@ -10,7 +10,7 @@ export default function Booking() {
     const findDoctor = async () => {
 
         try {
-          const res = await fetch(`http://localhost:4000/specific-doctor/${id}`, {
+          const res = await fetch(`https://doctor-api-backend.onrender.com/specific-doctor/${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

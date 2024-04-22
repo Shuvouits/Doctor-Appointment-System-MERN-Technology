@@ -31,7 +31,7 @@ function Login() {
 
         try {
 
-            const res = await fetch('http://localhost:4000/login', {
+            const res = await fetch('https://doctor-api-backend.onrender.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -119,11 +119,11 @@ function Login() {
 
                             <div className='row'>
                                 <div className='form-group'>
-                                    <input type='email' id='email' onChange={handleChange} placeholder='Enter your mail' required className='form-control' />
+                                    <input type='email' id='email' onChange={handleChange} placeholder='Enter your mail'  required className='form-control' />
                                 </div>
 
                                 <div className='form-group'>
-                                    <input type='password' id='password' onChange={handleChange} placeholder='Enter your password' required className='form-control' />
+                                    <input type='password' id='password' onChange={handleChange} placeholder='Enter your password'  required className='form-control' />
                                 </div>
 
                                 <button type='submit' className='submit-btn'>Submit</button>
@@ -134,9 +134,23 @@ function Login() {
                         <p>Donot have your account? <span><Link to={'/register'}>Register here</Link></span></p>
                     </div>
 
+                   
                 </div>
 
             </div>
+
+            <div style={{display : 'flex', flexDirection : 'column', alignItems : 'center', justifyContent : 'center'}}>
+
+            <div><span style={{fontWeight : 'bold'}}>User</span> : shuvo@test.com  <span style={{fontWeight: 'bold', marginLeft: '15px'}}>Password</span> : 123456789 </div>
+            <br></br>
+            <div><span style={{fontWeight : 'bold'}} >Doctor</span> : smantapatel@example.com  <span style={{fontWeight: 'bold', marginLeft: '15px'}}>Password</span> : 123456789</div>
+            <br></br>
+            <br></br>
+
+            </div>
+
+           
+
 
         </div>
 

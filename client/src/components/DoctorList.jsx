@@ -17,7 +17,7 @@ export default function DoctorList({ searchQuery }) {
     const allDoctor = async () => {
 
         try {
-            const res = await fetch('http://localhost:4000/all-doctor', {
+            const res = await fetch('https://doctor-api-backend.onrender.com/all-doctor', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

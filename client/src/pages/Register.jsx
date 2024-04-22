@@ -110,7 +110,7 @@ function Register() {
 
 
             // Make the API request with updated formData
-            const res = await fetch('http://localhost:4000/register', {
+            const res = await fetch('https://doctor-api-backend.onrender.com/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

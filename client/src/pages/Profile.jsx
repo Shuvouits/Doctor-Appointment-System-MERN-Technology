@@ -38,7 +38,7 @@ function Profile() {
   const handleLogout = async () => {
     try {
 
-      const res = await fetch('http://localhost:4000/signout', {
+      const res = await fetch('https://doctor-api-backend.onrender.com/signout', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ function Profile() {
     if (result.isConfirmed) {
 
       try {
-        const res = await fetch(`http://localhost:4000/delete-user`, {
+        const res = await fetch(`https://doctor-api-backend.onrender.com/delete-user`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -235,7 +235,7 @@ function Profile() {
 
 
       // Make the API request with updated formData
-      const res = await fetch('http://localhost:4000/profile-update', {
+      const res = await fetch('https://doctor-api-backend.onrender.com/profile-update', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -290,7 +290,7 @@ function Profile() {
   const doctorBook = async () => {
 
     try {
-      const res = await fetch(`http://localhost:4000/doctor-booking`, {
+      const res = await fetch(`https://doctor-api-backend.onrender.com/doctor-booking`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -331,7 +331,7 @@ function Profile() {
       });
 
       if (result.isConfirmed) {
-        const res = await fetch(`http://localhost:4000/delete-booking-doctor/${doctorId}`, {
+        const res = await fetch(`https://doctor-api-backend.onrender.com/delete-booking-doctor/${doctorId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

@@ -47,7 +47,7 @@ function DoctorInfo() {
   const findDoctor = async () => {
 
     try {
-      const res = await fetch(`http://localhost:4000/specific-doctor/${id}`, {
+      const res = await fetch(`https://doctor-api-backend.onrender.com/specific-doctor/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -76,8 +76,30 @@ function DoctorInfo() {
 
   const bookingHandler = async () => {
 
+    if(user === null){
+
+      Swal.fire({
+        toast: true,
+        position: 'top-right',
+        animation: true,
+        text: `Sorry You Are Not Authorized User`,
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        customClass: {
+            container: 'custom-toast-container',
+            popup: 'custom-toast-popup',
+            title: 'custom-toast-title',
+            icon: 'custom-toast-icon',
+        },
+    });
+
+
+    }
+
     try {
-      const res = await fetch(`http://localhost:4000/stripe-payment/${id}`, {
+      const res = await fetch(`https://doctor-api-backend.onrender.com/stripe-payment/${id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -148,7 +170,7 @@ function DoctorInfo() {
 
     try {
 
-      const res = await fetch(`http://localhost:4000/user-rating/${user.id}/${id}`, {
+      const res = await fetch(`https://doctor-api-backend.onrender.com/user-rating/${user.id}/${id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -205,7 +227,7 @@ function DoctorInfo() {
   const allUserReview = async () => {
 
     try {
-      const res = await fetch(`http://localhost:4000/user-review/${id}`, {
+      const res = await fetch(`https://doctor-api-backend.onrender.com/user-review/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -243,7 +265,7 @@ function DoctorInfo() {
         });
 
         if (result.isConfirmed) {
-          const res = await fetch(`http://localhost:4000/delete-review/${id}`, {
+          const res = await fetch(`https://doctor-api-backend.onrender.com/delete-review/${id}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
