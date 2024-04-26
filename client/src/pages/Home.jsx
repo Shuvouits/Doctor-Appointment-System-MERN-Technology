@@ -7,9 +7,12 @@ import MedicalService from '../components/MedicalService'
 import Virtual from '../components/Virtual'
 import DoctorList from "../components/DoctorList";
 import { useEffect, useState } from 'react'
+import { PulseLoader } from 'react-spinners';
 
 
 export default function Home() {
+
+  const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('');
 
   const [review, setReview] = useState([]);
@@ -27,6 +30,7 @@ export default function Home() {
 
       const data = await res.json();
       setReview(data);
+      setLoading(false)
 
     } catch (error) {
       return (error)
@@ -44,41 +48,39 @@ export default function Home() {
   return (
     <>
 
-      <Hero />
+      {loading && (
+        <div style={{ position: 'absolute', top: '50%', left: '50%' }}>
+          <PulseLoader color="#0000FF" />
+        </div>
+      )}
 
-      <Services />
+      <div style={{opacity : `${loading ? '0.3' : ''}`}}>
 
-      <About />  
+        <Hero />
 
-      <MedicalService />
+        <Services />
 
-      <Virtual />
+        <About />
 
-      <DoctorList  searchQuery={searchQuery} />
+        <MedicalService />
 
-      <FAQ />
+        <Virtual />
 
-      <Testimonial review={review}  /> 
+        <DoctorList searchQuery={searchQuery} />
 
-      {/* 
-    
-  
+        <FAQ />
 
-      
-
-      
-
-      
-
-     
-
-    
-
-          */}
+        <Testimonial review={review} />
 
       
-      <div style={{marginBottom: "100px"}}></div>
-      
+
+
+        <div style={{ marginBottom: "100px" }}></div>
+
+      </div>
+
+
+
 
     </>
 

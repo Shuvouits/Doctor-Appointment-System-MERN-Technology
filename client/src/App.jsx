@@ -15,6 +15,7 @@ import DoctorProfile from "./pages/DoctorProfile"
 import Booking from "./pages/Booking"
 import Checkout from "./pages/Checkout"
 import ServicesPage from "./pages/ServicesPage"
+import ScrollTop from "./scrollTop/scrollTop"
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 
   return (
     <div>
+      <ScrollTop />
       <Header />
       <Routes>
 
